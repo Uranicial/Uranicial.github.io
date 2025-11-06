@@ -108,3 +108,18 @@ deploy:
 
 markdown_it_plus:
   rawLaTeX: true
+
+# RSS
+feed:
+  enable: true
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content: false
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+  icon: icon.png
+  autodiscovery: true
+  template:
