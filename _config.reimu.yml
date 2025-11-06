@@ -355,11 +355,11 @@ twikoo:
 # https://github.com/gitalk/gitalk/blob/master/readme-cn.md
 gitalk:
   enable: true
-  clientID:Ov23liiZtjTIquwNT3qh
-  clientSecret:33af5427f3f98f6bfcc68916ab4e4ccfe29cde77
-  repo:Uranicial.github.io
-  owner:Uranicial
-  admin:Uranicial
+  clientID: Ov23liiZtjTIquwNT3qh
+  clientSecret: 33af5427f3f98f6bfcc68916ab4e4ccfe29cde77
+  repo: Uranicial.github.io
+  owner: Uranicial
+  admin: Uranicial
   md5: true
 
 # https://giscus.app/zh-CN
