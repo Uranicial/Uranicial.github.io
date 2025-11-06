@@ -6,7 +6,10 @@
 title: Urancial
 subtitle: '大二废柴Uranicial的小窝'
 description: '23333'
-keywords:blog, urancial, hexo
+keywords:
+  - blog
+  - urancial
+  - hexo
 author: Urancial
 language: zh-CN
 timezone: 'Asia/Shanghai'
