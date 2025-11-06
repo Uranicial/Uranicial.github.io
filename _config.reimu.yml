@@ -547,7 +547,7 @@ icp:
 
 # 萌国 ICP 备案
 moe_icp:
-  icpnumber: 1145141919810
+  icpnumber: # ICP备案号
 
 # show the copyright below each article
 article_copyright:
@@ -585,7 +585,7 @@ share:
 
 # Experimental, may have a lot of bugs, open with caution!
 pjax:
-  enable: false
+  enable: true
 
 # Experimental
 # https://github.com/GoogleChromeLabs/quicklink
