@@ -135,8 +135,8 @@ social:
 widgets:
   - category
   - tag
-  - tagcloud
-  - archive
+  # - tagcloud
+  # - archive
   - recent_posts
 
 # Widget behavior
@@ -235,11 +235,11 @@ dark_mode:
 
 # need https://github.com/D-Sketon/hexo-renderer-markdown-it-plus
 math:
-  enable: false
+  enable: true
   # If you don't want to use it, please set `autoRender` to true to enable browser rendering
   katex:
     enable: true
-    autoRender: false # whether to render the math in the browser, disabled by default
+    autoRender: true # whether to render the math in the browser, disabled by default
   mathjax:
     enable: false
     options: # see https://docs.mathjax.org/en/latest/web/configuration.html
@@ -268,7 +268,7 @@ math:
 # mermaid url https://github.com/mermaid-js/mermaid
 # need https://github.com/webappdevelp/hexo-filter-mermaid-diagrams
 mermaid:
-  enable: false
+  enable: true
   zoom: false # whether to enable zoom for mermaid diagrams
 
 code_block:
@@ -354,13 +354,13 @@ twikoo:
 
 # https://github.com/gitalk/gitalk/blob/master/readme-cn.md
 gitalk:
-  enable: false
-  clientID:
-  clientSecret:
-  repo:
-  owner:
-  admin:
-  md5: false
+  enable: true
+  clientID:Ov23liiZtjTIquwNT3qh
+  clientSecret:33af5427f3f98f6bfcc68916ab4e4ccfe29cde77
+  repo:Uranicial.github.io
+  owner:Uranicial
+  admin:Uranicial
+  md5: true
 
 # https://giscus.app/zh-CN
 giscus:
@@ -383,7 +383,7 @@ giscus:
 
 # need https://github.com/D-Sketon/hexo-algoliasearch
 # please add the following config in your _config.yml
-# algolia:
+# algolia:我再研究研究
 #   appId: 'your applicationID'
 #   apiKey: 'your apiKey'
 #   adminApiKey: 'your adminApiKey'
@@ -398,6 +398,7 @@ giscus:
 #     - slug
 #     - tags
 #     - title
+
 algolia_search:
   enable: false
   hits:
