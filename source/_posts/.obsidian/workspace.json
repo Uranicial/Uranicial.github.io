@@ -13,13 +13,35 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "hello-world.md",
+                "file": "碎碎念.md",
                 "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "碎碎念"
+            },
+            "group": "890ee752f216a943"
+          }
+        ]
+      },
+      {
+        "id": "87de513971618da2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f22fbc1f07923da4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "碎碎念.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "hello-world"
-            }
+              "title": "碎碎念"
+            },
+            "group": "890ee752f216a943"
           }
         ]
       }
@@ -94,7 +116,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "hello-world.md",
+                "file": "碎碎念.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +126,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "hello-world 的反向链接列表"
+              "title": "碎碎念 的反向链接列表"
             }
           },
           {
@@ -113,12 +135,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "hello-world.md",
+                "file": "碎碎念.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "hello-world 的出链列表"
+              "title": "碎碎念 的出链列表"
             }
           },
           {
@@ -142,13 +164,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "hello-world.md",
+                "file": "碎碎念.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "hello-world 的大纲"
+              "title": "碎碎念 的大纲"
             }
           }
         ]
@@ -170,5 +192,8 @@
     }
   },
   "active": "c0bafad2593262d4",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "hello-world.md",
+    "碎碎念.md"
+  ]
 }
