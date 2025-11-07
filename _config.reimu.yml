@@ -208,7 +208,7 @@ font:
   code:
     # - Ubuntu Mono
     # - Source Code Pro
-    # - JetBrains Mono
+    - JetBrains Mono
 
 # Local FallBack Font
 local_font:
@@ -361,6 +361,8 @@ gitalk:
   owner: Uranicial
   admin: Uranicial
   md5: true
+  labels: Gitalk
+  title: Comment
 
 # https://giscus.app/zh-CN
 giscus:
