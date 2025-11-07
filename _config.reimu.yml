@@ -302,7 +302,7 @@ comment:
     zh-TW: 說些什麼吧！
     ja: コメントを残す
     pt-BR: Deixe um comentário
-  default: waline # default comment system, when you enable multiple comment systems
+  default: gitalk # default comment system, when you enable multiple comment systems
 
 # valine comment system. https://valine.js.org
 # version 1.5.1
