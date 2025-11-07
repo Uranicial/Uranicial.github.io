@@ -101,6 +101,9 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: reimu
 
+theme_config:
+  favicon: /images/favicon.png
+  
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
