@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "hello-world.md",
+                "file": "碎碎念.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "hello-world"
+              "title": "碎碎念"
             },
             "group": "890ee752f216a943"
           }
@@ -34,12 +34,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "hello-world.md",
+                "file": "碎碎念.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "hello-world"
+              "title": "碎碎念"
             },
             "group": "890ee752f216a943"
           }
@@ -191,9 +191,9 @@
       "bases:创建新数据库": false
     }
   },
-  "active": "f22fbc1f07923da4",
+  "active": "31d4ca23e165ad9f",
   "lastOpenFiles": [
-    "碎碎念.md",
-    "hello-world.md"
+    "hello-world.md",
+    "碎碎念.md"
   ]
 }

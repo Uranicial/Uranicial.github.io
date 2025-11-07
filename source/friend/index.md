@@ -1,5 +1,25 @@
 ---
-title: 友链
+title: 友情链接
+comments: true
 ---
 
-这里后面会展示友链。
+## 本站信息
+- 站名： Uranicial
+- 站长： Uranicial
+- 地址： https://Uranicial.github.io/
+- 备用地址：会有的
+
+## 申请方法
+- 添加本站后，在本页留言，格式如下
+
+~~~yml
+```yml
+- name: #您的名字
+  url: #您的网址
+  desc: #简短描述
+  image: #一张图片
+```
+~~~
+
+## 小伙伴们
+{% friendsLink friend/_data.yml %}
