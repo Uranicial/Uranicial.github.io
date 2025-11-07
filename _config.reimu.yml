@@ -34,7 +34,7 @@ banner_srcset:
     - src: "/images/banner.webp"
       media: "(min-width: 800px)"
 
-favicon: "/images/favicon-2025.png?v=20251107" # which means themes/reimu/source/images/favicon.ico
+favicon: "source/images/favicon.png" # which means themes/reimu/source/images/favicon.ico
 # You can also write it in the form of the following url
 # favicon: "https://example.com"
 
