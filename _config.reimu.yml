@@ -581,8 +581,8 @@ share:
   # - linkedin
   # - reddit
   # - weibo
-  # - qq
-  # - weixin
+  - qq
+  - weixin
 
 ########################################
 # Experimental features
