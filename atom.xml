@@ -11,7 +11,7 @@
   <rights>All rights reserved 2026, Uranicial</rights>
   <subtitle>大二废柴Uranicial的小窝</subtitle>
   <title>Uranicial</title>
-  <updated>2026-10-29T09:46:05.780Z</updated>
+  <updated>2026-10-29T11:04:06.562Z</updated>
   <entry>
     <author>
       <name>Uranicial</name>
@@ -20,9 +20,29 @@
     <category term="Actions" scheme="https://uranicial.github.io/tags/Actions/"/>
     <id>https://uranicial.github.io/2026/10/29/Blog%E6%9B%B4%E6%96%B0%E6%A2%B3%E7%90%86/</id>
     <link href="https://uranicial.github.io/2026/10/29/Blog%E6%9B%B4%E6%96%B0%E6%A2%B3%E7%90%86/"/>
-    <published>2026-10-29T10:00:00.000Z</published>
+    <published>2026-10-29T11:00:00.000Z</published>
     <title>Blog更新梳理</title>
-    <updated>2026-10-29T09:46:05.780Z</updated>
+    <updated>2026-10-29T11:04:06.562Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Uranicial</name>
+    </author>
+    <category term="MHP" scheme="https://uranicial.github.io/tags/MHP/"/>
+    <category term="Git" scheme="https://uranicial.github.io/tags/Git/"/>
+    <category term="Github" scheme="https://uranicial.github.io/tags/Github/"/>
+    <id>https://uranicial.github.io/2026/10/29/MHP-%E9%9D%A2%E5%90%91%E5%AE%9E%E9%AA%8C%E5%AE%A4%E6%96%B0%E4%BA%BA%E3%81%AEGit%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B/</id>
+    <link href="https://uranicial.github.io/2026/10/29/MHP-%E9%9D%A2%E5%90%91%E5%AE%9E%E9%AA%8C%E5%AE%A4%E6%96%B0%E4%BA%BA%E3%81%AEGit%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B/"/>
+    <published>2026-10-29T10:00:00.000Z</published>
+    <summary>
+      <![CDATA[<p>出于这样那样的原因，本人觉得有必要再更新一版GIt相关的配置流程。</p>
+<p>参考这份教程前，请确认以下几点</p>
+<p>1.已经正确安装<code>Git</code>并完成相关设置</p>
+<p>2.已注册<code>Github</code>账号</p>
+<p>]]>
+    </summary>
+    <title>MHP-面向实验室新人のGit配置流程</title>
+    <updated>2026-10-29T11:04:06.562Z</updated>
   </entry>
   <entry>
     <author>
@@ -39,6 +59,6 @@
 <p>25-11-7]]>
     </summary>
     <title>碎碎念</title>
-    <updated>2026-10-29T09:46:05.780Z</updated>
+    <updated>2026-10-29T11:04:06.562Z</updated>
   </entry>
 </feed>
