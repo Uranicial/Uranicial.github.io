@@ -11,7 +11,19 @@
   <rights>All rights reserved 2026, Uranicial</rights>
   <subtitle>大二废柴Uranicial的小窝</subtitle>
   <title>Uranicial</title>
-  <updated>2026-10-29T09:33:00.293Z</updated>
+  <updated>2026-10-29T09:43:46.679Z</updated>
+  <entry>
+    <author>
+      <name>Uranicial</name>
+    </author>
+    <category term="Hexo" scheme="https://uranicial.github.io/tags/Hexo/"/>
+    <category term="Actions" scheme="https://uranicial.github.io/tags/Actions/"/>
+    <id>https://uranicial.github.io/2026/10/29/Blog%E6%9B%B4%E6%96%B0%E6%A2%B3%E7%90%86/</id>
+    <link href="https://uranicial.github.io/2026/10/29/Blog%E6%9B%B4%E6%96%B0%E6%A2%B3%E7%90%86/"/>
+    <published>2026-10-29T10:00:00.000Z</published>
+    <title>碎碎念</title>
+    <updated>2026-10-29T09:43:46.679Z</updated>
+  </entry>
   <entry>
     <author>
       <name>Uranicial</name>
@@ -27,6 +39,6 @@
 <p>25-11-7]]>
     </summary>
     <title>碎碎念</title>
-    <updated>2026-10-29T09:33:00.293Z</updated>
+    <updated>2026-10-29T09:43:46.679Z</updated>
   </entry>
 </feed>
