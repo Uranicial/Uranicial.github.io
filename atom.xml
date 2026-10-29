@@ -11,15 +11,15 @@
   <rights>All rights reserved 2026, Uranicial</rights>
   <subtitle>大三废柴Uranicial的小窝</subtitle>
   <title>Uranicial</title>
-  <updated>2026-10-29T17:55:02.587Z</updated>
+  <updated>2026-10-29T18:06:09.355Z</updated>
   <entry>
     <author>
       <name>Uranicial</name>
     </author>
     <category term="Hexo" scheme="https://uranicial.github.io/categories/Hexo/"/>
+    <category term="GitHub" scheme="https://uranicial.github.io/tags/GitHub/"/>
     <category term="Hexo" scheme="https://uranicial.github.io/tags/Hexo/"/>
     <category term="博客" scheme="https://uranicial.github.io/tags/%E5%8D%9A%E5%AE%A2/"/>
-    <category term="GitHub" scheme="https://uranicial.github.io/tags/GitHub/"/>
     <id>https://uranicial.github.io/2026/10/29/%E6%8A%98%E8%85%BE%E5%8D%9A%E5%AE%A2%EF%BC%9AHexo%20%E5%8F%8C%E4%BB%93%E5%BA%93%E4%B8%8E%20GitHub%20Actions%20%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/</id>
     <link href="https://uranicial.github.io/2026/10/29/%E6%8A%98%E8%85%BE%E5%8D%9A%E5%AE%A2%EF%BC%9AHexo%20%E5%8F%8C%E4%BB%93%E5%BA%93%E4%B8%8E%20GitHub%20Actions%20%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/"/>
     <published>2026-10-29T16:30:00.000Z</published>
@@ -27,15 +27,16 @@
       <![CDATA[<h1 id="引言"><a class="markdownIt-Anchor" href="#引言"></a>]]>
     </summary>
     <title>折腾博客：Hexo 双仓库与 GitHub Actions 自动部署</title>
-    <updated>2026-10-29T17:55:02.587Z</updated>
+    <updated>2026-10-29T18:06:09.355Z</updated>
   </entry>
   <entry>
     <author>
       <name>Uranicial</name>
     </author>
+    <category term="Git" scheme="https://uranicial.github.io/categories/Git/"/>
     <category term="MHP" scheme="https://uranicial.github.io/tags/MHP/"/>
     <category term="Git" scheme="https://uranicial.github.io/tags/Git/"/>
-    <category term="Github" scheme="https://uranicial.github.io/tags/Github/"/>
+    <category term="GitHub" scheme="https://uranicial.github.io/tags/GitHub/"/>
     <id>https://uranicial.github.io/2026/10/29/MHP-%E9%9D%A2%E5%90%91%E5%AE%9E%E9%AA%8C%E5%AE%A4%E6%96%B0%E4%BA%BA%E3%81%AEGit%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B/</id>
     <link href="https://uranicial.github.io/2026/10/29/MHP-%E9%9D%A2%E5%90%91%E5%AE%9E%E9%AA%8C%E5%AE%A4%E6%96%B0%E4%BA%BA%E3%81%AEGit%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B/"/>
     <published>2026-10-29T10:00:00.000Z</published>
@@ -51,7 +52,7 @@
     <author>
       <name>Uranicial</name>
     </author>
-    <category term="杂谈" scheme="https://uranicial.github.io/tags/%E6%9D%82%E8%B0%88/"/>
+    <category term="杂谈" scheme="https://uranicial.github.io/categories/%E6%9D%82%E8%B0%88/"/>
     <id>https://uranicial.github.io/2025/11/06/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</id>
     <link href="https://uranicial.github.io/2025/11/06/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
     <published>2025-11-06T19:35:00.000Z</published>
@@ -62,6 +63,6 @@
 <p>25-11-7]]>
     </summary>
     <title>碎碎念</title>
-    <updated>2026-10-29T17:55:02.587Z</updated>
+    <updated>2026-10-29T18:06:09.355Z</updated>
   </entry>
 </feed>
