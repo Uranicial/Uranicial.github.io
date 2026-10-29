@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Uranicial</name>
+  </author>
+  <generator uri="https://hexo.io/">Hexo</generator>
+  <icon>https://uranicial.github.io/icon.png</icon>
+  <id>https://uranicial.github.io/</id>
+  <link href="https://uranicial.github.io/" rel="alternate"/>
+  <link href="https://uranicial.github.io/atom.xml" rel="self"/>
+  <rights>All rights reserved 2026, Uranicial</rights>
+  <subtitle>大二废柴Uranicial的小窝</subtitle>
+  <title>Uranicial</title>
+  <updated>2026-10-29T04:58:45.508Z</updated>
+  <entry>
+    <author>
+      <name>Uranicial</name>
+    </author>
+    <category term="杂谈" scheme="https://uranicial.github.io/tags/%E6%9D%82%E8%B0%88/"/>
+    <id>https://uranicial.github.io/2025/11/07/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</id>
+    <link href="https://uranicial.github.io/2025/11/07/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    <published>2025-11-06T19:35:00.000Z</published>
+    <summary>
+      <![CDATA[<p>经过一天<s>不懈努力</s>也是搭好自己的博客了。</p>
+<p>本站是基于Hexo框架，在GitHub上部署的静态页面；<br />
+感谢Durlim大佬的指导以及D-Sketon大佬制作的灵梦模板 😄</p>
+<p>25-11-7]]>
+    </summary>
+    <title>碎碎念</title>
+    <updated>2026-10-29T04:58:45.508Z</updated>
+  </entry>
+</feed>
