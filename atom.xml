@@ -11,17 +11,23 @@
   <rights>All rights reserved 2026, Uranicial</rights>
   <subtitle>大三废柴Uranicial的小窝</subtitle>
   <title>Uranicial</title>
-  <updated>2026-10-29T16:16:14.777Z</updated>
+  <updated>2026-10-29T17:55:02.587Z</updated>
   <entry>
     <author>
       <name>Uranicial</name>
     </author>
+    <category term="Hexo" scheme="https://uranicial.github.io/categories/Hexo/"/>
     <category term="Hexo" scheme="https://uranicial.github.io/tags/Hexo/"/>
-    <id>https://uranicial.github.io/2026/10/29/Blog%E6%9B%B4%E6%96%B0%E6%A2%B3%E7%90%86/</id>
-    <link href="https://uranicial.github.io/2026/10/29/Blog%E6%9B%B4%E6%96%B0%E6%A2%B3%E7%90%86/"/>
+    <category term="博客" scheme="https://uranicial.github.io/tags/%E5%8D%9A%E5%AE%A2/"/>
+    <category term="GitHub" scheme="https://uranicial.github.io/tags/GitHub/"/>
+    <id>https://uranicial.github.io/2026/10/29/%E6%8A%98%E8%85%BE%E5%8D%9A%E5%AE%A2%EF%BC%9AHexo%20%E5%8F%8C%E4%BB%93%E5%BA%93%E4%B8%8E%20GitHub%20Actions%20%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/</id>
+    <link href="https://uranicial.github.io/2026/10/29/%E6%8A%98%E8%85%BE%E5%8D%9A%E5%AE%A2%EF%BC%9AHexo%20%E5%8F%8C%E4%BB%93%E5%BA%93%E4%B8%8E%20GitHub%20Actions%20%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/"/>
     <published>2026-10-29T16:30:00.000Z</published>
-    <title>Blog更新梳理</title>
-    <updated>2026-10-29T16:16:14.777Z</updated>
+    <summary>
+      <![CDATA[<h1 id="引言"><a class="markdownIt-Anchor" href="#引言"></a>]]>
+    </summary>
+    <title>折腾博客：Hexo 双仓库与 GitHub Actions 自动部署</title>
+    <updated>2026-10-29T17:55:02.587Z</updated>
   </entry>
   <entry>
     <author>
@@ -56,6 +62,6 @@
 <p>25-11-7]]>
     </summary>
     <title>碎碎念</title>
-    <updated>2026-10-29T16:16:14.777Z</updated>
+    <updated>2026-10-29T17:55:02.587Z</updated>
   </entry>
 </feed>

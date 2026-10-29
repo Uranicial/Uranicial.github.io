@@ -1,5 +1,5 @@
   <!DOCTYPE html>
-  <html lang="en"  data-theme-mode="auto">
+  <html lang="zh-CN"  data-theme-mode="auto">
   <head>
   <meta charset="utf-8">
   
@@ -7,7 +7,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)","en":"Copy successfully (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","en":"Copy failed (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://uranicial.github.io';window.REIMU_CONFIG.relative = '/';window.REIMU_CONFIG.i18n_languages = ["en"];window.REIMU_CONFIG.dark_mode = {"button":true,"mode":"auto"};</script>
   <title>
-    Blog更新梳理 | Uranicial
+    折腾博客：Hexo 双仓库与 GitHub Actions 自动部署 | Uranicial
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic|JetBrains Mono:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic|JetBrains Mono:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -15,17 +15,19 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="Wubba lubba dub dub">
+    <meta name="description" content="引言 去年11月搭完博客后就一直没更新，而且遗留了一堆问题没处理 今天忙里偷闲更新了一下博客，顺便解决了一个有意思的小问题 之前一直将 Hexo 博客源码和生成的静态页面放在同一个仓库中。由于 GitHub Free 的 Pages 服务要求发布仓库为 Public，源码、主题配置以及项目依赖等内容也会随之公开。 虽然不一定会产生直接的安全风险，但我还是希望将源码和最终发布的网站分开管理。于是便">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Blog更新梳理">
-<meta property="og:url" content="https://uranicial.github.io/en/2026/10/29/Blog%E6%9B%B4%E6%96%B0%E6%A2%B3%E7%90%86/index.html">
+<meta property="og:title" content="折腾博客：Hexo 双仓库与 GitHub Actions 自动部署">
+<meta property="og:url" content="https://uranicial.github.io/2026/10/29/%E6%8A%98%E8%85%BE%E5%8D%9A%E5%AE%A2%EF%BC%9AHexo%20%E5%8F%8C%E4%BB%93%E5%BA%93%E4%B8%8E%20GitHub%20Actions%20%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/index.html">
 <meta property="og:site_name" content="Uranicial">
-<meta property="og:description" content="Wubba lubba dub dub">
-<meta property="og:locale" content="en_US">
+<meta property="og:description" content="引言 去年11月搭完博客后就一直没更新，而且遗留了一堆问题没处理 今天忙里偷闲更新了一下博客，顺便解决了一个有意思的小问题 之前一直将 Hexo 博客源码和生成的静态页面放在同一个仓库中。由于 GitHub Free 的 Pages 服务要求发布仓库为 Public，源码、主题配置以及项目依赖等内容也会随之公开。 虽然不一定会产生直接的安全风险，但我还是希望将源码和最终发布的网站分开管理。于是便">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-10-29T16:30:00.000Z">
-<meta property="article:modified_time" content="2026-10-29T16:16:14.777Z">
+<meta property="article:modified_time" content="2026-10-29T17:55:02.587Z">
 <meta property="article:author" content="Uranicial">
+<meta property="article:tag" content="GitHub">
 <meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="博客">
 <meta name="twitter:card" content="summary">
       <meta name="keywords" content="blog, urancial, hexo">
     <link rel="alternate" href="/atom.xml" title="Uranicial" type="application/atom+xml">
@@ -56,7 +58,7 @@
            M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
           </svg>
       </div>
-      <div class="loading-word">Loading...</div>
+      <div class="loading-word">少女祈祷中...</div>
     </div>
   </div>
   <script>
@@ -95,45 +97,45 @@
       <div id="wrap">
         <div id="header-nav">
   <nav id="main-nav" aria-label="Primary navigation">
-        <a class="main-nav-link-wrap" href="/en/">
+        <a class="main-nav-link-wrap" href="/">
             <div class="main-nav-icon icon rotate">
                 &#xe62b;
             </div>
-          <span class="main-nav-link">Home</span>
+          <span class="main-nav-link">首页</span>
         </a>
-        <a class="main-nav-link-wrap" href="/en/archives">
+        <a class="main-nav-link-wrap" href="/archives">
             <div class="main-nav-icon icon rotate">
                 &#xe62b;
             </div>
-          <span class="main-nav-link">Archives</span>
+          <span class="main-nav-link">归档</span>
         </a>
-        <a class="main-nav-link-wrap" href="/en/about">
+        <a class="main-nav-link-wrap" href="/about">
             <div class="main-nav-icon icon rotate">
                 &#xe62b;
             </div>
-          <span class="main-nav-link">About</span>
+          <span class="main-nav-link">关于</span>
         </a>
-        <a class="main-nav-link-wrap" href="/en/friend">
+        <a class="main-nav-link-wrap" href="/friend">
             <div class="main-nav-icon icon rotate">
                 &#xe62b;
             </div>
-          <span class="main-nav-link">Friend</span>
+          <span class="main-nav-link">友链</span>
         </a>
     <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
   </nav>
   <nav id="sub-nav" aria-label="Secondary navigation">
-      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" aria-label="RSS Feed" target="_blank"></a>
-      <a id="nav-search-btn" class="nav-icon popup-trigger" title="Search" aria-label="Search"></a>
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
   </nav>
     <nav id="i18n-nav" aria-label="Language selection">
       <div class="custom-dropdown">
         <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
           <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
-          <span id="selected-lang">English</span>
+          <span id="selected-lang">简体中文</span>
         </div>
         <ul class="select-items" id="select-items" role="listbox" aria-label="Languages">
-            <li data-value="zh-CN" role="option" aria-selected="false">简体中文</li>
-            <li data-value="en" role="option" class="selected" aria-selected="true">English</li>
+            <li data-value="zh-CN" role="option" class="selected" aria-selected="true">简体中文</li>
+            <li data-value="en" role="option" aria-selected="false">English</li>
         </ul>
       </div>
       <script>
@@ -151,8 +153,8 @@
         selectOptions.forEach((item) => {
           item.addEventListener("click", () => {
             const langMap = {};
-              langMap['zh-CN'] = '/2026/10/29/Blog更新梳理/';
-              langMap['en'] = '/en/2026/10/29/Blog更新梳理/';
+              langMap['zh-CN'] = '/2026/10/29/折腾博客：Hexo 双仓库与 GitHub Actions 自动部署/';
+              langMap['en'] = '/en/2026/10/29/折腾博客：Hexo 双仓库与 GitHub Actions 自动部署/';
             selectedLang.textContent = item.textContent;
             selectItems.classList.remove("show");
             selectOptions.forEach((option) => {
@@ -175,11 +177,11 @@
 <header id="header" aria-label="Site header">
         <picture>
         </picture>
-          <img  fetchpriority="high" src="/images/banner.webp" alt="Blog更新梳理">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="折腾博客：Hexo 双仓库与 GitHub Actions 自动部署">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">Blog更新梳理</h1>
+            <h1 data-aos="slide-up">折腾博客：Hexo 双仓库与 GitHub Actions 自动部署</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -208,9 +210,9 @@
       ></meting-js>
   <div class="sidebar-wrapper">
     <div class="sidebar-wrap" data-aos="fade-up">
-          <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text"> 引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="toc-number">2.</span> <span class="toc-text"> 前期准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E4%B8%93%E7%94%A8-ssh-%E5%AF%86%E9%92%A5"><span class="toc-number">3.</span> <span class="toc-text"> 生成专用 SSH 密钥</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E5%85%AC%E9%92%A5%E6%B7%BB%E5%8A%A0%E5%88%B0%E5%8F%91%E5%B8%83%E4%BB%93%E5%BA%93"><span class="toc-number">3.1.</span> <span class="toc-text"> 把公钥添加到发布仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E7%A7%81%E9%92%A5%E6%B7%BB%E5%8A%A0%E5%88%B0%E6%BA%90%E7%A0%81%E4%BB%93%E5%BA%93"><span class="toc-number">3.2.</span> <span class="toc-text"> 把私钥添加到源码仓库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-github-actions-%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-number">4.</span> <span class="toc-text"> 创建 GitHub Actions 工作流</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5-github-pages-%E5%8F%91%E5%B8%83%E8%AE%BE%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text"> 检查 GitHub Pages 发布设置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="toc-number">6.</span> <span class="toc-text"> 运行自动化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD"><span class="toc-number">7.</span> <span class="toc-text"> 后续</span></a></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -220,16 +222,16 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>Post</div>
+    <div>文章</div>
     <div class="sidebar-state-number">3</div>
   </div>
   <div class="sidebar-state-category">
-    <div>Category</div>
-    <div class="sidebar-state-number">0</div>
+    <div>分类</div>
+    <div class="sidebar-state-number">1</div>
   </div>
   <div class="sidebar-state-tag">
-    <div>Tag</div>
-    <div class="sidebar-state-number">5</div>
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -245,32 +247,32 @@
 </div>
 <div class="sidebar-menu">
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="Home"></a>
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
           <div class="sidebar-menu-icon icon rotate">
               &#xe62b;
           </div>
-        <div class="sidebar-menu-link">Home</div>
+        <div class="sidebar-menu-link">首页</div>
       </div>
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="Archives"></a>
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
           <div class="sidebar-menu-icon icon rotate">
               &#xe62b;
           </div>
-        <div class="sidebar-menu-link">Archives</div>
+        <div class="sidebar-menu-link">归档</div>
       </div>
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="About"></a>
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
           <div class="sidebar-menu-icon icon rotate">
               &#xe62b;
           </div>
-        <div class="sidebar-menu-link">About</div>
+        <div class="sidebar-menu-link">关于</div>
       </div>
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="Friend"></a>
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
           <div class="sidebar-menu-icon icon rotate">
               &#xe62b;
           </div>
-        <div class="sidebar-menu-link">Friend</div>
+        <div class="sidebar-menu-link">友链</div>
       </div>
 </div>
 </div>
@@ -285,7 +287,7 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content"><article id="post-Blog更新梳理" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-折腾博客：Hexo 双仓库与 GitHub Actions 自动部署" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
@@ -300,19 +302,99 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        
+        <h1 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h1>
+<p>去年11月搭完博客后就一直没更新，而且遗留了一堆问题没处理</p>
+<p>今天忙里偷闲更新了一下博客，顺便解决了一个有意思的小问题</p>
+<p>之前一直将 Hexo 博客源码和生成的静态页面放在同一个仓库中。由于 GitHub Free 的 Pages 服务要求发布仓库为 Public，源码、主题配置以及项目依赖等内容也会随之公开。</p>
+<p>虽然不一定会产生直接的安全风险，但我还是希望将源码和最终发布的网站分开管理。于是便研究起了 GitHub Actions 的自动化部署方案。</p>
+<p>根据查阅的资料以及与G老师的讲解，整理了一个简单流程，本人技术有限，大佬们图一乐就好</p>
+<h1 id="前期准备"><a class="markdownIt-Anchor" href="#前期准备"></a> 前期准备</h1>
+<p>首先我们准备两个仓库</p>
+<p>源码仓库 Private：专门保存 Hexo 源码，用于日常编写和维护 - 文章、Reimu 配置、插件依赖、自定义图片和脚本</p>
+<p>发布仓库 Public：存放构建完成的网页 - index.html、css、js、images 等静态资源</p>
+<h1 id="生成专用-ssh-密钥"><a class="markdownIt-Anchor" href="#生成专用-ssh-密钥"></a> 生成专用 SSH 密钥</h1>
+<p>我们需要让源码仓库的 GitHub Actions 有权限向发布仓库推送生成的网页</p>
+<p>这里建议使用 Deploy Key，而不是个人访问令牌（PAT），因为 Deploy Key 可以只授权一个仓库，权限范围更小</p>
+<p>打开PowerShell，执行</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">New-Item</span> <span class="literal">-ItemType</span> Directory <span class="literal">-Force</span> <span class="string">&quot;<span class="variable">$HOME</span>\.ssh&quot;</span> | <span class="built_in">Out-Null</span></span><br><span class="line"></span><br><span class="line">ssh<span class="literal">-keygen</span> <span class="literal">-t</span> ed25519 <span class="literal">-C</span> <span class="string">&quot;example-blog-deploy&quot;</span> <span class="operator">-f</span> <span class="string">&quot;<span class="variable">$HOME</span>\.ssh\example_blog_deploy&quot;</span></span><br></pre></td></tr></table></figure>
+<p>生成过程中提示输入 passphrase 时，留空即可，方便 Actions 自动使用</p>
+<p>完成后会在<code>C:\Users\&lt;你的用户名&gt;\.ssh</code>下生成两个文件：</p>
+<p><code>example_blog_deploy</code>和<code>example_blog_deploy.pub</code></p>
+<h2 id="把公钥添加到发布仓库"><a class="markdownIt-Anchor" href="#把公钥添加到发布仓库"></a> 把公钥添加到发布仓库</h2>
+<p>查看公钥</p>
+<p>打开<code>example_blog_deploy.pub</code>文件，复制密钥</p>
+<p>在发布仓库的Settings下找到``Deploy Keys`</p>
+<p>点击 <code>Add deploy key</code>，填写Title,Key 并勾选<code>Allow write access</code></p>
+<h2 id="把私钥添加到源码仓库"><a class="markdownIt-Anchor" href="#把私钥添加到源码仓库"></a> 把私钥添加到源码仓库</h2>
+<p>接下来查看私钥</p>
+<p>复制<code>example_blog_deploy</code>的完整内容</p>
+<p>在源码仓库的Settings下找到Secrets and variables的<code>Actions</code></p>
+<p>点击 <code>New repository secret</code>，填写Name,Secret</p>
+<p>这样配置后，源码仓库的自动化流程就能向网站仓库推送文件，但部署密钥本身不需要暴露在 <code>package.json</code>、Hexo 配置或公开网页中</p>
+<h1 id="创建-github-actions-工作流"><a class="markdownIt-Anchor" href="#创建-github-actions-工作流"></a> 创建 GitHub Actions 工作流</h1>
+<p>在你的源码仓库新建文件：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.github/workflows/deploy.yml</span><br></pre></td></tr></table></figure>
+<p>然后粘贴以下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Deploy</span> <span class="string">Hexo</span> <span class="string">Blog</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">main</span>	<span class="comment">#源码仓库 main 有新提交时自动触发</span></span><br><span class="line">  <span class="attr">workflow_dispatch:</span>	<span class="comment">#允许 GitHub 网页手动执行</span></span><br><span class="line"></span><br><span class="line"><span class="attr">permissions:</span></span><br><span class="line">  <span class="attr">contents:</span> <span class="string">read</span></span><br><span class="line"></span><br><span class="line"><span class="attr">concurrency:</span></span><br><span class="line">  <span class="attr">group:</span> <span class="string">hexo-deploy</span></span><br><span class="line">  <span class="attr">cancel-in-progress:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">deploy:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">Build</span> <span class="string">and</span> <span class="string">Publish</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="comment"># 1. 获取 Hexo 源码</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span> <span class="string">source</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v4</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">persist-credentials:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># 2. 安装 Node.js</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Setup</span> <span class="string">Node.js</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v4</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">&quot;24.11.0&quot;</span>	<span class="comment">#这里与你之前的 Hexo 构建环境保持一致</span></span><br><span class="line">          <span class="attr">cache:</span> <span class="string">npm</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># 3. 安装依赖</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">dependencies</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">npm</span> <span class="string">ci</span>	<span class="comment">#根据 package-lock.json 安装依赖</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># 4. 构建博客</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span> <span class="string">Hexo</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">npm</span> <span class="string">run</span> <span class="string">build</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># 5. 验证构建结果并禁用 Jekyll，避免 Pages 进行 Jekyll 处理</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Verify</span> <span class="string">output</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          test -f public/index.html</span></span><br><span class="line"><span class="string">          touch public/.nojekyll</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">      <span class="comment"># 6. 部署到发布仓库</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Publish</span> <span class="string">website</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">peaceiris/actions-gh-pages@v4</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">deploy_key:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.ACTIONS_DEPLOY_KEY</span> <span class="string">&#125;&#125;</span>	<span class="comment">#这里的ACTIONS_DEPLOY_KEY改成你的私钥名</span></span><br><span class="line">          <span class="attr">external_repository:</span> <span class="string">username/example.github.io</span>	<span class="comment">#这里填你的发布仓库</span></span><br><span class="line">          <span class="attr">publish_branch:</span> <span class="string">main</span>	<span class="comment">#发布分支</span></span><br><span class="line">          <span class="attr">publish_dir:</span> <span class="string">./public</span></span><br><span class="line">          <span class="attr">keep_files:</span> <span class="literal">false</span>	<span class="comment">#删除已失效的旧生成文件</span></span><br></pre></td></tr></table></figure>
+<p>这里使用的 <code>peaceiris/actions-gh-pages@v4</code> 明确支持将 <code>publish_dir</code> 发布到另一个 GitHub 仓库，且支持使用 Deploy Key 认证</p>
+<h1 id="检查-github-pages-发布设置"><a class="markdownIt-Anchor" href="#检查-github-pages-发布设置"></a> 检查 GitHub Pages 发布设置</h1>
+<p>在发布仓库的Settings下找到<code>GitHub Pages</code>设置</p>
+<p>确认</p>
+<p>Source：Deploy from a branch</p>
+<p>Branch：main</p>
+<p>Folder：/(root)</p>
+<p>如果是 <code>GitHub Actions</code>，就改成 <code>Deploy from a branch</code>，保存设置</p>
+<h1 id="运行自动化"><a class="markdownIt-Anchor" href="#运行自动化"></a> 运行自动化</h1>
+<p>配置完成后，打开源码仓库的 Actions 页面</p>
+<p>找到 <code>Deploy Hexo Blog</code>，点击 <code>Run workflow</code>，选择 <code>main</code> 并运行</p>
+<p>正常情况下，依次出现以下步骤：</p>
+<ol>
+<li>
+<p>Checkout source</p>
+<p>获取源码</p>
+</li>
+<li>
+<p>Setup Node.js</p>
+<p>准备 Node 24.11.0</p>
+</li>
+<li>
+<p>Install dependencies</p>
+<p>安装依赖</p>
+</li>
+<li>
+<p>Build Hexo</p>
+<p>生成网站</p>
+</li>
+<li>
+<p>Verify output</p>
+<p>确认输出</p>
+</li>
+<li>
+<p>Publish website</p>
+<p>发布到另一个仓库</p>
+</li>
+</ol>
+<p>如果整个工作流显示绿色成功，再打开网站仓库的提交记录</p>
+<p>你应该能看到由自动化生成的新部署提交</p>
+<p>随后访问博客，检查网站是否已更新</p>
+<h1 id="后续"><a class="markdownIt-Anchor" href="#后续"></a> 后续</h1>
+<p>今后只需在本地写文章，然后将源码推送到 <code>源码仓库</code></p>
+<p>后续构建、部署和网站更新都会由 GitHub 自动完成</p>
+<p>你也可以直接通过 GitHub 网页编辑源码仓库中的 Markdown 文章，提交后同样会触发自动部署</p>
+
     </div>
     <footer class="article-footer">
-      
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/en/tags/Hexo/" rel="tag" title="Hexo">Hexo</a></li></ul>
+        <a class="article-category-link" href="/categories/Hexo/" title="Hexo" data-aos="zoom-in">Hexo</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/GitHub/" rel="tag" title="GitHub">GitHub</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag" title="Hexo">Hexo</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag" title="博客">博客</a></li></ul>
 
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
     <div class="article-nav-link-wrap right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MHP-面向实验室新人のGit配置流程" class="lazyload">
-      <a href="/en/2026/10/29/MHP-%E9%9D%A2%E5%90%91%E5%AE%9E%E9%AA%8C%E5%AE%A4%E6%96%B0%E4%BA%BA%E3%81%AEGit%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B/" aria-label="Next: MHP-面向实验室新人のGit配置流程"  title="Next: MHP-面向实验室新人のGit配置流程"></a>
-      <div class="article-nav-caption">Next</div>
+      <a href="/2026/10/29/MHP-%E9%9D%A2%E5%90%91%E5%AE%9E%E9%AA%8C%E5%AE%A4%E6%96%B0%E4%BA%BA%E3%81%AEGit%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B/" aria-label="后一篇: MHP-面向实验室新人のGit配置流程"  title="后一篇: MHP-面向实验室新人のGit配置流程"></a>
+      <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
           MHP-面向实验室新人のGit配置流程
       </h3>
@@ -324,7 +406,7 @@
   <section id="comments" data-aos="fade-up">
     <div class="comment-header">
         
-      <h2 class="comment-title">Leave a comment</h2>
+      <h2 class="comment-title">说些什么吧！</h2>
       <div class="comment-selector">
         <div class="comment-selector-wrap">
             <div class="selector-item" data-selector="giscus">
@@ -354,22 +436,22 @@
       Uranicial
     </div>
       <div>
-        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
         Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
       </div>
       <div>
         <span class="icon-brush"></span>
-        1.3k
+        2.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:07
+        00:11
       </div>
       <div>
         <span class="icon-eye"></span>
-        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
         &nbsp;|&nbsp;
         <span class="icon-user"></span>
-        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
       </div>
   </div>
 </footer>
@@ -382,9 +464,9 @@
       </div>
       <nav id="mobile-nav" aria-label="Mobile navigation">
   <div class="sidebar-wrap">
-        <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text"> 引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="toc-number">2.</span> <span class="toc-text"> 前期准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E4%B8%93%E7%94%A8-ssh-%E5%AF%86%E9%92%A5"><span class="toc-number">3.</span> <span class="toc-text"> 生成专用 SSH 密钥</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E5%85%AC%E9%92%A5%E6%B7%BB%E5%8A%A0%E5%88%B0%E5%8F%91%E5%B8%83%E4%BB%93%E5%BA%93"><span class="toc-number">3.1.</span> <span class="toc-text"> 把公钥添加到发布仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E7%A7%81%E9%92%A5%E6%B7%BB%E5%8A%A0%E5%88%B0%E6%BA%90%E7%A0%81%E4%BB%93%E5%BA%93"><span class="toc-number">3.2.</span> <span class="toc-text"> 把私钥添加到源码仓库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-github-actions-%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-number">4.</span> <span class="toc-text"> 创建 GitHub Actions 工作流</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5-github-pages-%E5%8F%91%E5%B8%83%E8%AE%BE%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text"> 检查 GitHub Pages 发布设置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="toc-number">6.</span> <span class="toc-text"> 运行自动化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD"><span class="toc-number">7.</span> <span class="toc-text"> 后续</span></a></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -394,16 +476,16 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>Post</div>
+    <div>文章</div>
     <div class="sidebar-state-number">3</div>
   </div>
   <div class="sidebar-state-category">
-    <div>Category</div>
-    <div class="sidebar-state-number">0</div>
+    <div>分类</div>
+    <div class="sidebar-state-number">1</div>
   </div>
   <div class="sidebar-state-tag">
-    <div>Tag</div>
-    <div class="sidebar-state-number">5</div>
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -419,32 +501,32 @@
 </div>
 <div class="sidebar-menu">
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="Home"></a>
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
           <div class="sidebar-menu-icon icon rotate">
               &#xe62b;
           </div>
-        <div class="sidebar-menu-link">Home</div>
+        <div class="sidebar-menu-link">首页</div>
       </div>
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="Archives"></a>
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
           <div class="sidebar-menu-icon icon rotate">
               &#xe62b;
           </div>
-        <div class="sidebar-menu-link">Archives</div>
+        <div class="sidebar-menu-link">归档</div>
       </div>
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="About"></a>
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
           <div class="sidebar-menu-icon icon rotate">
               &#xe62b;
           </div>
-        <div class="sidebar-menu-link">About</div>
+        <div class="sidebar-menu-link">关于</div>
       </div>
       <div class="sidebar-menu-link-wrap">
-        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="Friend"></a>
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
           <div class="sidebar-menu-icon icon rotate">
               &#xe62b;
           </div>
-        <div class="sidebar-menu-link">Friend</div>
+        <div class="sidebar-menu-link">友链</div>
       </div>
 </div>
 </div>
@@ -539,13 +621,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "Uranicial",
-          title: "Blog更新梳理",
-          url: "https://uranicial.github.io/2026/10/29/Blog%E6%9B%B4%E6%96%B0%E6%A2%B3%E7%90%86/",
+          title: "折腾博客：Hexo 双仓库与 GitHub Actions 自动部署",
+          url: "https://uranicial.github.io/2026/10/29/%E6%8A%98%E8%85%BE%E5%8D%9A%E5%AE%A2%EF%BC%9AHexo%20%E5%8F%8C%E4%BB%93%E5%BA%93%E4%B8%8E%20GitHub%20Actions%20%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/",
           excerpt: "",
           description: "",
-          stripContent: "",
+          stripContent: " 引言 去年11月搭完博客后就一直没更新，而且遗留了一堆问题没处理 今天忙里偷闲更新了一下博客，顺便解决了一个有意思的小问题 之前一直将 Hexo 博客源码和生成的静态页面放在同一个仓库中。由于 GitHub Free 的 Pages 服务要求发布仓库为 Public，源码、主题配置以及项目依赖等内容也会随之公开。 虽然不一定会产生直接的安全风险，但我还是希望将源码和最终发布的网站分开管理。于是便研究起了 GitHub Actions 的自动化部署方案。 根据查阅的资料以及与G老师的讲解，整理了",
           date: "Fri Oct 30 2026 00:30:00 GMT+0800",
-          updated: "Fri Oct 30 2026 00:16:14 GMT+0800",
+          updated: "Fri Oct 30 2026 01:55:02 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
