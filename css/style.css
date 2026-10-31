@@ -1952,6 +1952,44 @@ button {
     background: var(--footer-icon) no-repeat center/80%;
   }
 }
+.article-copyright {
+  background: var(--red-5-5);
+  border-left: 6px var(--red-4) solid;
+  margin: 24px 0;
+  border-radius: 12px;
+  transition: 0.3s;
+  padding: 6px 10px;
+  box-shadow: var(--shadow-meta);
+  position: relative;
+  overflow: hidden;
+  word-break: break-all;
+}
+.article-copyright .icon {
+  margin: 0 4px;
+}
+.article-copyright p {
+  font-size: 14px;
+  line-height: 2;
+  color: var(--color-default);
+}
+.article-copyright p strong {
+  font-weight: 700;
+}
+.article-copyright a {
+  color: var(--color-default);
+  text-decoration: none;
+}
+.article-copyright a:hover {
+  text-decoration: underline;
+}
+.article-copyright-bg {
+  font-size: 120px;
+  color: var(--red-3);
+  opacity: 0.2;
+  position: absolute;
+  right: -15px;
+  bottom: -40px;
+}
 @media screen and (min-width: 960px) {
   #mobile-nav {
     display: none;
