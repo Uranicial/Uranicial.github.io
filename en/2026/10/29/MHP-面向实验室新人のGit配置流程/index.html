@@ -15,15 +15,15 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="出于这样那样的原因，本人觉得有必要再更新一版 Git 相关的配置流程。 参考这份教程前，请确认以下几点 1.已经正确安装 Git 并完成相关设置 2.已注册 GitHub 账号  3.确认你的网络环境稳定  配置Git本地仓库 打开Git bash 依次输入以下命令以设置username和email 12git config --global user.name &quot;username&amp;qu">
+    <meta name="description" content="出于这样那样的原因，本人觉得有必要再再再更新一版 Git 相关的配置流程。这次尽量把what,why,how讲清楚，顺便补充一些各位在提交作业时可能会遇到的问题 如果你是第一次接触 Git，请按顺序看完前五节；如果之前已经配置过 Git，只是不知道怎么提交作业，可以直接跳到第四节  写在前面 参考这份教程前，请确认以下几点：  已经正确安装 Git 已注册 GitHub 账号 已获得实验室任务仓库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MHP-面向实验室新人のGit配置流程">
 <meta property="og:url" content="https://uranicial.github.io/en/2026/10/29/MHP-%E9%9D%A2%E5%90%91%E5%AE%9E%E9%AA%8C%E5%AE%A4%E6%96%B0%E4%BA%BA%E3%81%AEGit%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Uranicial">
-<meta property="og:description" content="出于这样那样的原因，本人觉得有必要再更新一版 Git 相关的配置流程。 参考这份教程前，请确认以下几点 1.已经正确安装 Git 并完成相关设置 2.已注册 GitHub 账号  3.确认你的网络环境稳定  配置Git本地仓库 打开Git bash 依次输入以下命令以设置username和email 12git config --global user.name &quot;username&amp;qu">
+<meta property="og:description" content="出于这样那样的原因，本人觉得有必要再再再更新一版 Git 相关的配置流程。这次尽量把what,why,how讲清楚，顺便补充一些各位在提交作业时可能会遇到的问题 如果你是第一次接触 Git，请按顺序看完前五节；如果之前已经配置过 Git，只是不知道怎么提交作业，可以直接跳到第四节  写在前面 参考这份教程前，请确认以下几点：  已经正确安装 Git 已注册 GitHub 账号 已获得实验室任务仓库">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-10-29T10:00:00.000Z">
-<meta property="article:modified_time" content="2026-11-08T15:09:00.000Z">
+<meta property="article:modified_time" content="2026-11-25T04:47:00.000Z">
 <meta property="article:author" content="Uranicial">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="GitHub">
@@ -211,7 +211,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEgit%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text"> 配置Git本地仓库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEssh-key"><span class="toc-number">2.</span> <span class="toc-text"> 配置SSH Key</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%86github%E4%B8%8Egit%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text"> 将Github与Git远程连接</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E4%BB%93%E5%BA%93%E6%96%87%E4%BB%B6%E6%8F%90%E4%BA%A4%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text"> 拉取仓库文件&#x2F;提交本地文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E4%BB%93%E5%BA%93%E6%96%87%E4%BB%B6"><span class="toc-number">4.1.</span> <span class="toc-text"> 拉取仓库文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%88%87%E6%8D%A2"><span class="toc-number">4.2.</span> <span class="toc-text"> 分支创建与切换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6"><span class="toc-number">4.3.</span> <span class="toc-text"> 提交本地文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pull-request-merge"><span class="toc-number">5.</span> <span class="toc-text"> Pull Request &amp; Merge</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text"> 其他问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3-22-%E9%97%AE%E9%A2%98"><span class="toc-number">6.1.</span> <span class="toc-text"> 端口 22 问题</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-number">1.</span> <span class="toc-text"> 写在前面</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-%E5%92%8C-github-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text"> Git 和 GitHub 是什么</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEgit"><span class="toc-number">2.</span> <span class="toc-text"> 配置Git</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5-git-%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="toc-number">2.1.</span> <span class="toc-text"> 检查 Git 是否安装成功</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-username-%E5%92%8C-email"><span class="toc-number">2.2.</span> <span class="toc-text"> 设置 username 和 email</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEssh-key"><span class="toc-number">3.</span> <span class="toc-text"> 配置SSH Key</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%B7%B2%E7%BB%8F%E5%AD%98%E5%9C%A8-ssh-key"><span class="toc-number">3.1.</span> <span class="toc-text"> 检查是否已经存在 SSH Key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90-ssh-key"><span class="toc-number">3.2.</span> <span class="toc-text"> 生成 SSH Key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E5%85%AC%E9%92%A5%E6%B7%BB%E5%8A%A0%E8%87%B3-github"><span class="toc-number">3.3.</span> <span class="toc-text"> 将公钥添加至 GitHub</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%98%AF%E5%90%A6%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F"><span class="toc-number">3.4.</span> <span class="toc-text"> 测试是否配置成功</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%86-github-%E4%BB%93%E5%BA%93%E4%B8%8B%E8%BD%BD%E8%87%B3%E6%9C%AC%E5%9C%B0"><span class="toc-number">4.</span> <span class="toc-text"> 将 GitHub 仓库下载至本地</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#clone-%E4%BB%93%E5%BA%93"><span class="toc-number">4.1.</span> <span class="toc-text"> Clone 仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E4%BB%93%E5%BA%93"><span class="toc-number">4.2.</span> <span class="toc-text"> 进入仓库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E4%BB%93%E5%BA%93%E6%96%87%E4%BB%B6%E6%8F%90%E4%BA%A4%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6"><span class="toc-number">5.</span> <span class="toc-text"> 拉取仓库文件&#x2F;提交本地文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%88%86%E6%94%AF"><span class="toc-number">5.1.</span> <span class="toc-text"> 创建自己的分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%8F%E6%AC%A1%E5%BC%80%E5%A7%8B%E6%96%B0%E4%BB%BB%E5%8A%A1%E5%89%8D%E5%90%8C%E6%AD%A5%E4%BB%93%E5%BA%93"><span class="toc-number">5.2.</span> <span class="toc-text"> 每次开始新任务前，同步仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E6%94%BE%E4%BD%9C%E4%B8%9A%E6%96%87%E4%BB%B6"><span class="toc-number">5.3.</span> <span class="toc-text"> 存放作业文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6"><span class="toc-number">5.4.</span> <span class="toc-text"> 提交本地文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E9%80%81%E8%87%B3-github"><span class="toc-number">5.5.</span> <span class="toc-text"> 推送至 GitHub</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pull-request-merge"><span class="toc-number">6.</span> <span class="toc-text"> Pull Request &amp; Merge</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E8%B5%B7-pull-request"><span class="toc-number">6.1.</span> <span class="toc-text"> 发起 Pull Request</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%89%E5%BE%85%E5%AE%A1%E6%A0%B8%E5%8F%8A%E4%BF%AE%E6%94%B9"><span class="toc-number">6.2.</span> <span class="toc-text"> 等待审核及修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E6%AC%A1%E6%8F%90%E4%BA%A4%E6%97%B6%E8%AF%A5%E5%81%9A%E4%BB%80%E4%B9%88"><span class="toc-number">6.3.</span> <span class="toc-text"> 下次提交时该做什么</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A5%E5%B8%B8%E6%8F%90%E4%BA%A4%E9%80%9F%E6%9F%A5"><span class="toc-number">7.</span> <span class="toc-text"> 日常提交速查</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98faq"><span class="toc-number">8.</span> <span class="toc-text"> 其他问题（FAQ）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3-22-%E9%97%AE%E9%A2%98"><span class="toc-number">8.1.</span> <span class="toc-text"> 端口 22 问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8F%90%E7%A4%BA-permission-denied-publickey"><span class="toc-number">8.2.</span> <span class="toc-text"> 为什么提示 Permission denied (publickey)？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssh-%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F%E4%BA%86%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E6%98%AF-repository-not-found"><span class="toc-number">8.3.</span> <span class="toc-text"> SSH 测试成功了，为什么还是 Repository not found？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8F%90%E7%A4%BA-not-a-git-repository"><span class="toc-number">8.4.</span> <span class="toc-text"> 为什么提示 not a git repository？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8F%90%E7%A4%BA-destination-path-already-exists"><span class="toc-number">8.5.</span> <span class="toc-text"> 为什么提示 destination path already exists？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8F%90%E7%A4%BA%E5%88%86%E6%94%AF%E5%B7%B2%E7%BB%8F%E5%AD%98%E5%9C%A8-%E6%89%BE%E4%B8%8D%E5%88%B0%E5%88%86%E6%94%AF"><span class="toc-number">8.6.</span> <span class="toc-text"> 为什么提示分支已经存在 &#x2F; 找不到分支？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-commit-%E7%9A%84%E6%97%B6%E5%80%99%E6%8F%90%E7%A4%BA-nothing-to-commit"><span class="toc-number">8.7.</span> <span class="toc-text"> 为什么 Commit 的时候提示 nothing to commit？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-push-%E7%9A%84%E6%97%B6%E5%80%99%E6%8F%90%E7%A4%BA-no-upstream-branch"><span class="toc-number">8.8.</span> <span class="toc-text"> 为什么 Push 的时候提示 no upstream branch？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-push-%E8%A2%AB-rejectednon-fast-forward"><span class="toc-number">8.9.</span> <span class="toc-text"> 为什么 Push 被 rejected（non-fast-forward）？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E5%86%B2%E7%AA%81merge-conflict%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3"><span class="toc-number">8.10.</span> <span class="toc-text"> 合并冲突（Merge Conflict）怎么解决？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%B0%8F%E5%BF%83%E5%9C%A8-main-%E5%88%86%E6%94%AF%E4%B8%8A%E4%BF%AE%E6%94%B9%E4%BA%86%E6%96%87%E4%BB%B6"><span class="toc-number">8.11.</span> <span class="toc-text"> 不小心在 main 分支上修改了文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%B2%E7%BB%8F-push-%E4%BA%86%E4%B8%BA%E4%BB%80%E4%B9%88-main-%E9%87%8C%E8%BF%98%E6%98%AF%E7%9C%8B%E4%B8%8D%E5%88%B0%E6%88%91%E7%9A%84%E6%8F%90%E4%BA%A4"><span class="toc-number">8.12.</span> <span class="toc-text"> 已经 Push 了，为什么 main 里还是看不到我的提交？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pr-%E5%B7%B2%E7%BB%8F%E5%88%9B%E5%BB%BA%E4%BA%86%E5%8F%91%E7%8E%B0%E4%BD%9C%E4%B8%9A%E6%9C%89%E9%97%AE%E9%A2%98%E8%BF%98%E8%83%BD%E4%BF%AE%E6%94%B9%E5%90%97"><span class="toc-number">8.13.</span> <span class="toc-text"> PR 已经创建了，发现作业有问题，还能修改吗？</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -292,7 +292,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2026-10-29T10:00:00.000Z" itemprop="datePublished">2026-10-29</time>
-    <time style="display: none;" id="post-update-time">2026-11-08</time>
+    <time style="display: none;" id="post-update-time">2026-11-25</time>
   </span>
 </div>
 
@@ -301,102 +301,353 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <p>出于这样那样的原因，本人觉得有必要再更新一版 Git 相关的配置流程。</p>
-<p>参考这份教程前，请确认以下几点</p>
-<p>1.已经正确安装 <a target="_blank" rel="noopener" href="https://git-scm.com/install/windows">Git </a>并完成相关设置</p>
-<p>2.已注册 <a target="_blank" rel="noopener" href="https://github.com/dashboard">GitHub 账号 </a></p>
-<p>3.确认你的网络环境稳定</p>
-<h1 id="配置git本地仓库"><a class="markdownIt-Anchor" href="#配置git本地仓库"></a> 配置Git本地仓库</h1>
+        <p>出于这样那样的原因，本人觉得有必要再再再更新一版 Git 相关的配置流程。这次尽量把what,why,how讲清楚，顺便补充一些各位在提交作业时可能会遇到的问题</p>
+<p>如果你是第一次接触 Git，请按顺序看完前五节；如果之前已经配置过 Git，只是不知道怎么提交作业，可以直接跳到第四节</p>
+<h1 id="写在前面"><a class="markdownIt-Anchor" href="#写在前面"></a> 写在前面</h1>
+<p>参考这份教程前，请确认以下几点：</p>
+<ol>
+<li>已经正确安装 <a target="_blank" rel="noopener" href="https://git-scm.com/install/windows">Git</a></li>
+<li>已注册 <a target="_blank" rel="noopener" href="https://github.com/dashboard">GitHub 账号</a></li>
+<li>已获得实验室任务仓库的访问权限（如果收到了仓库邀请，请先接受）</li>
+<li>确认你的网络环境可以正常访问 GitHub</li>
+</ol>
+<p>本教程以 Windows 下的 <code>Git Bash</code> 为例，仓库为 <a target="_blank" rel="noopener" href="https://github.com/Uranicial/2026MHP-member"><code>Uranicial/2026MHP-member</code></a></p>
+<h2 id="git-和-github-是什么"><a class="markdownIt-Anchor" href="#git-和-github-是什么"></a> Git 和 GitHub 是什么</h2>
+<p>简单来说，<code>Git</code> 是管理文件修改记录的工具，<code>GitHub</code> 则是我们用来存放、共享这些记录的平台</p>
+<p>这里先说明几个后面会用到的概念，不需要各位现在就全部记住</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>简单理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本地仓库</td>
+<td>你电脑上的项目文件及其修改记录</td>
+</tr>
+<tr>
+<td>远程仓库</td>
+<td>存放在 GitHub 上的项目仓库</td>
+</tr>
+<tr>
+<td><code>main</code></td>
+<td>主分支，存放经过审核的内容</td>
+</tr>
+<tr>
+<td>个人分支（Branch）</td>
+<td>各位用来提交自己作业的分支</td>
+</tr>
+<tr>
+<td><code>clone</code></td>
+<td>第一次将远程仓库复制到电脑上</td>
+</tr>
+<tr>
+<td><code>pull</code></td>
+<td>将远程仓库的更新获取并整合到当前分支</td>
+</tr>
+<tr>
+<td><code>add</code></td>
+<td>选中准备提交的修改</td>
+</tr>
+<tr>
+<td><code>commit</code></td>
+<td>在本地保存一次修改记录</td>
+</tr>
+<tr>
+<td><code>push</code></td>
+<td>将本地的提交记录上传至远程仓库</td>
+</tr>
+<tr>
+<td>Pull Request（PR）</td>
+<td>请求将个人分支中的修改合并进另一个分支</td>
+</tr>
+<tr>
+<td><code>merge</code></td>
+<td>将一个分支的修改合并到另一个分支</td>
+</tr>
+</tbody>
+</table>
+<p>对于各位来说，提交一次作业大概就是这么一回事</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">下载仓库（首次）</span><br><span class="line">    ↓</span><br><span class="line">切换到自己的分支并同步更新</span><br><span class="line">    ↓</span><br><span class="line">存放作业文件</span><br><span class="line">    ↓</span><br><span class="line">git add → git commit → git push</span><br><span class="line">    ↓</span><br><span class="line">在 GitHub 上发起 PR</span><br><span class="line">    ↓</span><br><span class="line">管理员审核并合并至 main</span><br></pre></td></tr></table></figure>
+<p><strong>注意：<code>push</code> 成功并不代表作业已经合并到主分支，后面还需要提 PR</strong></p>
+<p>P.S. 文中的 <code>Uranicial</code> 是本人的英文名，涉及个人分支和作业文件夹时，请各位替换成自己的英文名。仓库地址中的 <code>Uranicial</code> 是仓库所有者的用户名，这个不要改</p>
+<p>命令中以 <code>#</code> 开头的内容是注释，主要用于解释命令的作用；示例中的报错和运行结果不是让各位输入的命令</p>
+<h1 id="配置git"><a class="markdownIt-Anchor" href="#配置git"></a> 配置Git</h1>
+<h2 id="检查-git-是否安装成功"><a class="markdownIt-Anchor" href="#检查-git-是否安装成功"></a> 检查 Git 是否安装成功</h2>
+<p>在开始菜单找到 <code>Git Bash</code> 并打开，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+<p>如果出现类似 <code>git version 2.xx.x.windows.x</code> 的内容，就说明 Git 已经安装成功了，具体版本号不必和示例一致</p>
 <p>打开<code>Git bash</code></p>
+<h2 id="设置-username-和-email"><a class="markdownIt-Anchor" href="#设置-username-和-email"></a> 设置 username 和 email</h2>
 <p>依次输入以下命令以设置username和email</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;username&quot;</span>	<span class="comment">#自定义用户名</span></span><br><span class="line">git config --global user.email <span class="string">&quot;example@email.com&quot;</span>	<span class="comment">#用户邮箱</span></span><br></pre></td></tr></table></figure>
-<p><code>username</code> 和<code>example@email.com</code>改成你的用户名和邮箱</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;username&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;example@email.com&quot;</span></span><br></pre></td></tr></table></figure>
+<p><code>username</code> 和 <code>example@email.com</code> 改成你自己的提交署名和邮箱</p>
+<p>建议使用 GitHub 账号已验证的邮箱（也可以使用 GitHub 提供的 noreply 邮箱）</p>
 <p>设置完成输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
-<p>如果显示出你的 <a target="_blank" rel="noopener" href="http://user.name">user.name</a> 和 user.email ,就代表你设置成功了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --get user.name</span><br><span class="line">git config --global --get user.email</span><br></pre></td></tr></table></figure>
+<p>如果显示的是你刚才设置的内容，就代表设置成功了</p>
+<p>P.S. 以上操作一般只需要在每台电脑上配置一次，不需要每次交作业都重新配置</p>
 <p>接下来在你想要拉取仓库文件的位置创建一个文件夹</p>
 <p>进入该文件夹右键空白区域打开<code>Git Bash</code></p>
 <p>输入以下命令将该文件夹初始化成一个 Git 可管理的仓库</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
 <p>此时文件夹里多了个<code>.git</code>隐藏文件夹，它是<code>Git</code>用来跟踪和管理版本库的</p>
 <h1 id="配置ssh-key"><a class="markdownIt-Anchor" href="#配置ssh-key"></a> 配置SSH Key</h1>
-<p>首先，在本地的用户目录:<code>C:\Users\&lt;你的用户名&gt;</code>下，查询是否存在<code>.ssh</code>文件夹</p>
-<p>如果有，再看文件夹下有没有<code>id_rsa</code>和<code>id_rsa.pub</code>这两个文件，如果也有，可直接到下一步</p>
+<p>这一步是让 GitHub 确认正在访问仓库的人是你，后面我们就可以通过 SSH 下载、上传仓库文件了</p>
+<h2 id="检查是否已经存在-ssh-key"><a class="markdownIt-Anchor" href="#检查是否已经存在-ssh-key"></a> 检查是否已经存在 SSH Key</h2>
+<p>打开 <code>Git Bash</code>，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -al ~/.ssh</span><br></pre></td></tr></table></figure>
+<p>也可以直接在文件资源管理器中打开 <code>C:\Users\&lt;你的用户名&gt;\.ssh</code></p>
+<p>查看里面是否已经存在<code>id_rsa</code>和<code>id_rsa.pub</code>这一组文件</p>
+<p>如果有可用的密钥对，可以直接使用已有的密钥，没必要重新生成。如果这些文件不存在，或者提示没有 <code>.ssh</code> 文件夹，就继续下一步</p>
+<h2 id="生成-ssh-key"><a class="markdownIt-Anchor" href="#生成-ssh-key"></a> 生成 SSH Key</h2>
 <p>如果没有，在开始附录里找到<code>Git Bash</code>，输入以下命令，创建<code>SSH Key</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C example@email.com	<span class="comment">#这个邮箱是注册Github的邮箱</span></span><br></pre></td></tr></table></figure>
 <p><code>example@email.com</code>改成你注册 Github 的邮箱</p>
-<p><strong>如果出现以下几行，直接按下<code>Enter</code>即可</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Enter tile <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/c/Users/lenovo/.ssh/id_rsa):</span><br><span class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br></pre></td></tr></table></figure>
-<p>我们再次查看<code>.ssh</code>文件夹，已经有<code>id_rsa</code>，<code>id_rsa.pub</code>文件</p>
-<p>这两个文件是<code>SSH Key</code>的秘钥对，其中<code>id_rsa</code>是私钥，<strong>不能泄露</strong>；<code>id_rsa.pub</code>是公钥，可以公开</p>
-<p>接下来打开<code>Github</code>的<code>Settings</code>页面，找到<a target="_blank" rel="noopener" href="https://github.com/settings/keys">SSH and GPG keys</a></p>
-<p>点击<code>New SSH key</code>自定义你的<code>Title</code>，然后将<code>id_rsa.pub</code>里的内容粘贴到Key里，最后单击<code>Add SSH Key</code>就完成<code>ssh</code>配置啦。</p>
-<h1 id="将github与git远程连接"><a class="markdownIt-Anchor" href="#将github与git远程连接"></a> 将Github与Git远程连接</h1>
-<p>接下来在你想要<code>clone</code>仓库文件的位置创建一个文件夹</p>
-<p>进入该文件夹右键空白区域打开<code>Git Bash</code></p>
-<p>输入以下命令将该文件夹初始化成一个Git可管理的仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-<p>此时文件夹里多了个<code>.git</code>隐藏文件夹，它是<code>Git</code>用来跟踪和管理版本库的</p>
-<p>建立本地文件夹和远程仓库的连接，这里我们以各位的任务仓库：<code>Uranicial/2026MHP-member</code>举例</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:Uranicial/2026MHP-member.git</span><br></pre></td></tr></table></figure>
+<p>接下来会出现类似这样的提示</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Enter file in which to save the key (.../.ssh/id_rsa):</span><br><span class="line">Enter passphrase (empty for no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br></pre></td></tr></table></figure>
+<p>第一行按 <code>Enter</code> 使用默认保存位置即可。后面两行是设置密钥口令，建议设置一个自己记得住的口令；如果暂时不设置，也可以直接按两次 <code>Enter</code></p>
+<p>再次查看 <code>.ssh</code> 文件夹，此时应该多了两个文件：</p>
+<p><code>id_rsa</code>：私钥，<strong>不能泄露，也不要上传至任何仓库</strong></p>
+<p><code>id_rsa.pub</code>：公钥，下一步要将它添加至 GitHub</p>
+<h2 id="将公钥添加至-github"><a class="markdownIt-Anchor" href="#将公钥添加至-github"></a> 将公钥添加至 GitHub</h2>
+<p>在 <code>Git Bash</code> 中输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<p>复制命令输出的完整一行内容（包括开头的 <code>ssh-rsa</code>）</p>
+<p>接下来打开 GitHub 的 <code>Settings</code> 页面，找到 <a target="_blank" rel="noopener" href="https://github.com/settings/keys">SSH and GPG keys</a></p>
+<ol>
+<li>点击 <code>New SSH key</code></li>
+<li><code>Title</code> 自定义即可，比如 <code>My Laptop</code></li>
+<li><code>Key type</code> 选择 <code>Authentication Key</code></li>
+<li>将刚才复制的公钥内容粘贴到 <code>Key</code> 中</li>
+<li>点击 <code>Add SSH key</code></li>
+</ol>
+<h2 id="测试是否配置成功"><a class="markdownIt-Anchor" href="#测试是否配置成功"></a> 测试是否配置成功</h2>
+<p>回到 <code>Git Bash</code>，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>第一次连接可能会出现类似这样的提示</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Are you sure you want to continue connecting (yes/no/[fingerprint])?</span><br></pre></td></tr></table></figure>
+<p>确认显示的服务器指纹与 <a target="_blank" rel="noopener" href="https://docs.github.com/zh/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints">GitHub 官方公布的 SSH 指纹</a> 一致后，输入 <code>yes</code> 并回车</p>
+<p>如果出现类似以下内容</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi username! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
+<p>就说明 SSH 配置成功了。后面那句 <code>does not provide shell access</code> 不是报错，不需要处理</p>
+<p>顺便确认一下 <code>Hi</code> 后面的用户名是不是你自己的 GitHub 账号</p>
+<p>如果遇到 <code>Connection timed out</code> 或 <code>Permission denied (publickey)</code>，请参考FAQ</p>
+<h1 id="将-github-仓库下载至本地"><a class="markdownIt-Anchor" href="#将-github-仓库下载至本地"></a> 将 GitHub 仓库下载至本地</h1>
+<h2 id="clone-仓库"><a class="markdownIt-Anchor" href="#clone-仓库"></a> Clone 仓库</h2>
+<p>接下来找到你想存放仓库的位置，比如 <code>D:\Project</code>，没有的话可以自行创建一个</p>
+<p>在该文件夹的空白处右键，打开 <code>Git Bash Here</code>（Win11 可能需要先点一下“显示更多选项”）</p>
+<p>接下来把仓库里的内容<code>clone</code>到本地目录，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:Uranicial/2026MHP-member.git</span><br></pre></td></tr></table></figure>
 <p><code>git@github.com:Uranicial/2026MHP-member.git</code>是该仓库的SSH连接</p>
-<p>接下来把仓库里的内容<code>clone</code>到本地文件夹，输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin main</span><br></pre></td></tr></table></figure>
-<p>完成以后本地文件夹就有仓库的文件了</p>
+<p>正常情况下，Git 会自动在当前目录下创建一个名为 <code>2026MHP-member</code> 的文件夹，并下载仓库中的文件</p>
+<h2 id="进入仓库"><a class="markdownIt-Anchor" href="#进入仓库"></a> 进入仓库</h2>
+<p>clone完成后，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 2026MHP-member</span><br><span class="line">git status</span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+<p>正常情况下，<code>git status</code> 会显示当前分支的信息，<code>git remote -v</code> 会显示名为 <code>origin</code> 的远程仓库地址</p>
+<p>如果你把 Git Bash 关闭了，下次直接进入 <code>2026MHP-member</code> 文件夹，右键打开 <code>Git Bash Here</code> 即可</p>
+<p>P.S. 仓库根目录下还有一个名为 <code>.git</code> 的隐藏文件夹，它是 Git 用来保存版本记录的。平时各位不需要管它，更不要随手删掉</p>
 <h1 id="拉取仓库文件提交本地文件"><a class="markdownIt-Anchor" href="#拉取仓库文件提交本地文件"></a> 拉取仓库文件/提交本地文件</h1>
-<p>在带有<code>.git</code>的目录下打开<code>Git Bash</code></p>
-<h2 id="拉取仓库文件"><a class="markdownIt-Anchor" href="#拉取仓库文件"></a> 拉取仓库文件</h2>
-<p>拉取仓库的文件，以获取最新内容</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin main</span><br></pre></td></tr></table></figure>
-<p>如果切换到个人分支时未发现main分支的新增内容，说明需要同步main分支改动</p>
-<p><strong>切换到你的分支</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout Uranicial	<span class="comment">#&#x27;Uranicial&#x27;是分支名</span></span><br></pre></td></tr></table></figure>
-<p><strong>执行合并命令</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge main</span><br></pre></td></tr></table></figure>
-<p>如果主分支的修改与特性分支无冲突，Git 会自动创建合并提交；若存在冲突，则需要手动解决冲突</p>
-<h2 id="分支创建与切换"><a class="markdownIt-Anchor" href="#分支创建与切换"></a> 分支创建与切换</h2>
-<p>请以你们的<strong>英文名</strong>创建一个分支</p>
-<p>这里用本人 Uranicial 举例</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch Uranicial	<span class="comment">#&#x27;Uranicial&#x27;是分支名</span></span><br></pre></td></tr></table></figure>
-<p>切换到分支<code>Uranicial</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout Uranicial	</span><br><span class="line"><span class="comment"># 或者使用以下命令创建并切换到新分支</span></span><br><span class="line">git checkout -b Uranicial</span><br></pre></td></tr></table></figure>
-<p>上述 Uranicial 改成你们英文名(提交作业时)，不是请自便</p>
-<p>在你创建的分支下进行修改</p>
-<p>请在<code>2026MHP-member\</code>下找到，命名为你们的英文名的文件夹，按各阶段的时间分别存放作业</p>
-<p>如果没有对应时间的文件夹请自行创建</p>
-<p>P.S. 主分支一般是<code>main</code>或者<code>master</code></p>
+<p>接下来这些内容是各位平时提交作业时真正需要用到的操作</p>
+<p><strong>以下命令均在 <code>2026MHP-member</code> 仓库根目录下执行</strong></p>
+<p>即在带有<code>.git</code>的目录下</p>
+<h2 id="创建自己的分支"><a class="markdownIt-Anchor" href="#创建自己的分支"></a> 创建自己的分支</h2>
+<p>请各位以自己的 <strong>英文名</strong> 创建一个分支，这里依旧用本人 <code>Uranicial</code> 举例</p>
+<p>先切换到主分支并获取最新内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git switch main</span><br><span class="line">git pull --ff-only origin main</span><br></pre></td></tr></table></figure>
+<p>接下来创建并切换到个人分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git switch -c Uranicial</span><br></pre></td></tr></table></figure>
+<p>如果你以前已经创建过该分支，就不需要再带 <code>-c</code> 了，直接输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git switch Uranicial</span><br></pre></td></tr></table></figure>
+<p>如果本地没有该分支，但之前已经在 GitHub 上创建过（比如换了一台电脑），可以输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin</span><br><span class="line">git switch --track origin/Uranicial</span><br></pre></td></tr></table></figure>
+<p>查看当前所在分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<p>可能会出现如下内容</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* Uranicial</span><br><span class="line">  main</span><br></pre></td></tr></table></figure>
+<p>带 <code>*</code> 的就是你当前所在的分支。确认是自己的英文名后再开始修改文件</p>
+<p>P.S. 以前用过 <code>git checkout</code> 的各位也可以继续使用</p>
+<p><code>git checkout -b Uranicial</code> 对应 <code>git switch -c Uranicial</code></p>
+<p>``git checkout Uranicial<code>对应</code>git switch Uranicial`</p>
+<h2 id="每次开始新任务前同步仓库"><a class="markdownIt-Anchor" href="#每次开始新任务前同步仓库"></a> 每次开始新任务前，同步仓库</h2>
+<p>仓库里不止你一个人在提交，所以本地仓库的内容不一定是最新的</p>
+<p>首先执行 <code>git status</code>，确认没有尚未处理的修改。如果有，请先在对应分支完成提交或备份，不要直接切分支</p>
+<p>依次输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git switch main</span><br><span class="line">git pull --ff-only origin main</span><br><span class="line">git switch Uranicial</span><br><span class="line">git merge main</span><br></pre></td></tr></table></figure>
+<p>前两行是更新本地的 <code>main</code> 分支，后两行是将最新的主分支内容同步到自己的分支。</p>
+<p>如果 <code>git merge main</code> 显示 <code>Already up to date.</code>，说明当前分支已经包含本地 <code>main</code> 的更新，不需要再做什么</p>
+<p>如果出现 <code>CONFLICT</code>，说明发生了合并冲突，请参考第六节处理</p>
+<p><strong>这里的 <code>git merge main</code> 是把主分支的修改合并到个人分支，不是把你的分支合并到主分支。</strong> 后者是由管理员审核 PR 后完成的</p>
+<h2 id="存放作业文件"><a class="markdownIt-Anchor" href="#存放作业文件"></a> 存放作业文件</h2>
+<p>确认你现在处于自己的分支下，然后在 <code>2026MHP-member</code> 中找到以自己英文名命名的文件夹，按各阶段的时间分别存放作业</p>
+<p>假如没有对应时间的文件夹，请自行创建</p>
+<p>例如（以下仅为目录结构示意，实际时间文件夹名以任务要求为准）</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">2026MHP-member/</span><br><span class="line">└── Uranicial/</span><br><span class="line">    ├── 2026-10-29/</span><br><span class="line">    │   └── T01.html</span><br><span class="line">    └── 2026-11-05/</span><br><span class="line">        └── T02.java</span><br></pre></td></tr></table></figure>
+<p>不要把作业丢到仓库根目录下，也不要去修改其他人的文件夹</p>
+<p>文件保存完成后回到 Git Bash，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+<p>Git 会告诉你新增、修改或删除了哪些文件。确认显示的是自己这次要提交的内容</p>
 <h2 id="提交本地文件"><a class="markdownIt-Anchor" href="#提交本地文件"></a> 提交本地文件</h2>
-<p>建议在提交文件前先拉取一遍仓库文件(参考4.1)</p>
-<p>在你创建的分支提交修改</p>
-<p>先添加所有更改到暂存区</p>
+<p>首先将自己的修改添加到暂存区</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -- Uranicial/</span><br></pre></td></tr></table></figure>
+<p>这里的 <code>Uranicial/</code> 改成你自己的作业文件夹名</p>
+<p>如果确认仓库中所有修改都属于本次任务，也可以使用</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
-<p>然后提交更改到本地仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m 26-10-29-T01-Uranicial</span><br></pre></td></tr></table></figure>
-<p><code>26-10-29-T01-Uranicial</code>这一段可自行修改，建议按该格式填写以提交任务</p>
-<p>推送更改过的分支到远程仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin Uranicial	<span class="comment">#&#x27;Uranicial&#x27;指上文创建的Uranicail分支</span></span><br></pre></td></tr></table></figure>
+<p>不过本人建议各位尽量只添加自己的文件夹，避免顺手把其他文件也交了上去</p>
+<p>再次执行 <code>git status</code>，确认 <code>Changes to be committed</code> 下列出的内容正确</p>
+<p>然后将修改提交到本地仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;26-10-29-T01-Uranicial&quot;</span></span><br></pre></td></tr></table></figure>
+<p><code>-m</code> 后面的内容是本次提交的说明，建议各位按以下格式填写</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">日期（YY-MM-DD）-编号-英文名</span><br></pre></td></tr></table></figure>
+<p>例如 <code>26-11-05-T02-Uranicial</code>这里的日期、任务编号和英文名根据实际情况修改</p>
+<p>到目前为止，修改记录还只存在于你的电脑上</p>
+<h2 id="推送至-github"><a class="markdownIt-Anchor" href="#推送至-github"></a> 推送至 GitHub</h2>
+<p>首次推送个人分支时输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin Uranicial</span><br></pre></td></tr></table></figure>
+<p><code>-u</code> 用来建立本地分支与远程同名分支的跟踪关系</p>
+<p>以后在该个人分支下直接执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p>即可，也可以继续使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin Uranicial</span><br></pre></td></tr></table></figure>
+<p>如果没有报错，打开 GitHub 仓库并切换到自己的分支，应该就能看到刚刚提交的文件了</p>
+<p>如果你在 <code>main</code> 中找不到自己的文件，不用急，因为目前作业还只在个人分支中，下一步才是提交 PR</p>
 <h1 id="pull-request-merge"><a class="markdownIt-Anchor" href="#pull-request-merge"></a> Pull Request &amp; Merge</h1>
-<p>确认你的修改完成且上传至远程仓库后，就可以准备提PR(Pull Request)了</p>
-<p>首先在远程仓库查看你的分支(Branch)这里依旧用分支Uranicial举例</p>
-<p>找到<code>Contribute</code>按钮，点击后出现<code>Open pull request</code></p>
-<p>我们点一下它，进入Open a pull request界面，修改完title和description后点击下方的<code>Create pull request</code>按钮创建PR</p>
-<p>一般来说仓库管理在review后确认无误会将该Branch直接Merge进main branch</p>
-<p>如果存在一定问题管理会留下comment并Close pull request，请根据comment中提到的内容进行修改后再次发起PR</p>
-<h1 id="其他问题"><a class="markdownIt-Anchor" href="#其他问题"></a> 其他问题</h1>
+<h2 id="发起-pull-request"><a class="markdownIt-Anchor" href="#发起-pull-request"></a> 发起 Pull Request</h2>
+<p>确认你的修改完成且上传至远程仓库后，就可以准备提 PR (Pull Request) 了</p>
+<p>打开 GitHub 上的任务仓库，切换到自己的分支</p>
+<p>一般会出现 <code>Compare &amp; pull request</code> 按钮</p>
+<p>如果没有，找到<code>Contribute</code>按钮，点击后出现<code>Open pull request</code>，点击后进入Open a pull request界面</p>
+<p>也可以在仓库的 <code>Pull requests</code> 页面点击 <code>New pull request</code></p>
+<p>接下来确认这两个选项</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">base: main        	 ← 要合并到哪里</span><br><span class="line">compare: Uranicial   ← 你提交修改的分支</span><br></pre></td></tr></table></figure>
+<p><strong>不要选反了。</strong> 我们要做的是把个人分支中的修改合并到 <code>main</code> 中</p>
+<p>确认 <code>Files changed</code> 中的内容无误后，填写标题（Title）和说明（Description）</p>
+<p>这里给各位一个参考</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Title: 26-10-29-T01-Uranicial</span><br><span class="line">Description: 提交 T01 任务相关文件。</span><br></pre></td></tr></table></figure>
+<p>点击 <code>Create pull request</code>，至此就完成了本次作业的 PR 提交</p>
+<h2 id="等待审核及修改"><a class="markdownIt-Anchor" href="#等待审核及修改"></a> 等待审核及修改</h2>
+<p>一般来说，仓库管理员在 Review 后确认无误，会将该PR Approve，并将 PR Merge 进 <code>main</code> 分支</p>
+<p>如果管理员留下了 Comment 或要求修改，请根据意见在原来的个人分支上修改，再执行 <code>add</code>、<code>commit</code>、<code>push</code></p>
+<p>只要 PR 还处于 <code>Open</code> 状态，新的提交就会自动出现在原 PR 中，不需要再提一个新的 PR</p>
+<p>如果 PR 已被关闭（<code>Closed</code>）且没有合并，按照管理员要求重新打开或发起一个新的 PR 即可</p>
+<p>如果显示 <code>Merged</code>，说明作业已经合并到主分支了</p>
+<p>P.S. 各位不需要自己去点 <code>Merge pull request</code>，也不要直接向 <code>main</code> 分支 Push</p>
+<h2 id="下次提交时该做什么"><a class="markdownIt-Anchor" href="#下次提交时该做什么"></a> 下次提交时该做什么</h2>
+<p>如果个人分支仍然存在，就继续使用原来的个人分支</p>
+<p>如果管理员在合并后删除了远程个人分支，先确认之前的作业已合并</p>
+<p>再按管理员要求从最新 <code>main</code> 重新建立个人分支不要为每次任务随意创建一堆分支</p>
+<h1 id="日常提交速查"><a class="markdownIt-Anchor" href="#日常提交速查"></a> 日常提交速查</h1>
+<p>已经完成 Git、SSH 配置，且已 Clone 仓库并创建个人分支的各位，可以直接参考下面的流程</p>
+<p><strong>开始任务前</strong>（确认工作区没有未处理的修改）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git switch main</span><br><span class="line">git pull --ff-only origin main</span><br><span class="line">git switch Uranicial</span><br><span class="line">git merge main</span><br></pre></td></tr></table></figure>
+<p>如果合并出现冲突或者任一命令报错，请先处理对应问题，再执行后续命令</p>
+<p><strong>完成作业、保存文件后</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git add -- Uranicial/</span><br><span class="line">git status</span><br><span class="line">git commit -m <span class="string">&quot;26-10-29-T01-Uranicial&quot;</span></span><br><span class="line">git push -u origin Uranicial</span><br></pre></td></tr></table></figure>
+<p>已经建立跟踪关系的个人分支，以后最后一行也可以写成 <code>git push</code></p>
+<p><strong>最后打开 GitHub，发起 PR：<code>base: main</code>，<code>compare: 自己的英文名</code></strong></p>
+<p>如果还有问题，请各位把执行的命令、完整报错信息以及 <code>git status</code> 的结果一起发给本人或仓库管理员</p>
+<p>不然只发一句“Git 用不了了”，本人也很难判断是哪个环节出了问题（）</p>
+<p>P.S. 截图或复制报错时记得检查一下，不要把私钥、Token、密码之类的内容也发出来</p>
+<h1 id="其他问题faq"><a class="markdownIt-Anchor" href="#其他问题faq"></a> 其他问题（FAQ）</h1>
+<p>以下问题建议各位在遇到相应的报错时再来看</p>
 <h2 id="端口-22-问题"><a class="markdownIt-Anchor" href="#端口-22-问题"></a> 端口 22 问题</h2>
-<p>在使用<code>git push</code>或其他 Git 操作时，如果遇到以下错误：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh: connect to host github.com port 22: Connection timed out </span><br><span class="line">fatal: Could not <span class="built_in">read</span> from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights and the repository exists.</span><br></pre></td></tr></table></figure>
+<p>在使用<code>git push</code>或其他 Git 操作时，如果遇到以下错误</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh: connect to host github.com port 22: Connection timed out </span><br><span class="line">fatal: Could not <span class="built_in">read</span> from remote repository.</span><br></pre></td></tr></table></figure>
 <p>这是由于默认的 SSH 22 端口被防火墙或网络策略限制，导致无法连接到 GitHub 的服务器</p>
-<p>我们可以将连接改为 SSH 的 443 端口</p>
-<p>打开<code>C:\Users\&lt;你的用户名&gt;\.ssh</code>文件夹</p>
-<p>创建文件 <code>config</code> (无扩展名)</p>
-<p>用记事本或者其他文本编辑器打开 <code>config</code> 文件，添加以下内容：</p>
+<p>我们可以先测试 SSH 的 443 端口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T -p 443 git@ssh.github.com</span><br></pre></td></tr></table></figure>
+<p>如果成功认证，打开 <code>C:\Users\&lt;你的用户名&gt;\.ssh</code> 文件夹</p>
+<p>创建或编辑名为 <code>config</code> 的文件（无扩展名，不是 <code>config.txt</code>），用记事本或者其他文本编辑器打开并添加以下内容：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">    Hostname ssh.github.com</span><br><span class="line">    User git</span><br><span class="line">    Port 443</span><br></pre></td></tr></table></figure>
+<p>如果已有其他 SSH 配置，请保留原来的内容，不要直接覆盖</p>
+<p>若已有 <code>Host github.com</code> 的配置，则修改对应的那一段即可</p>
 <p>保存并关闭</p>
-<p>测试连接是否成功</p>
+<p>测试连接是否成功：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
 <p>如果配置生效，你会看到类似这样的提示</p>
 <p>Hi <your-username>! You’ve successfully authenticated…</p>
+<p>如果 443 端口也无法连接，就先检查网络环境。端口问题不代表你的密钥一定有问题，不需要反复生成 SSH Key</p>
+<h2 id="为什么提示-permission-denied-publickey"><a class="markdownIt-Anchor" href="#为什么提示-permission-denied-publickey"></a> 为什么提示 Permission denied (publickey)？</h2>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git@github.com: Permission denied (publickey).</span><br></pre></td></tr></table></figure>
+<p>一般是 GitHub 没有接受你的 SSH 密钥。请检查：</p>
+<ol>
+<li>是否已经将完整的 <code>.pub</code> 公钥添加到了 GitHub</li>
+<li>是否添加到了正确的 GitHub 账号</li>
+<li>本地私钥文件是否还存在</li>
+</ol>
+<p>可以先执行 <code>ssh -T git@github.com</code> 测试。如果密钥已经配置但没有被正确加载，可以在 Git Bash 中执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> <span class="string">&quot;<span class="subst">$(ssh-agent -s)</span>&quot;</span></span><br><span class="line">ssh-add ~/.ssh/id_ed25519</span><br><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>如果使用的是 RSA 密钥，换成 <code>id_rsa</code>。这里的 <code>ssh-add</code> 使用的是本地私钥文件，不是 <code>.pub</code> 文件，但私钥仍然不能分享给别人。</p>
+<h2 id="ssh-测试成功了为什么还是-repository-not-found"><a class="markdownIt-Anchor" href="#ssh-测试成功了为什么还是-repository-not-found"></a> SSH 测试成功了，为什么还是 Repository not found？</h2>
+<p>SSH 认证成功只说明 GitHub 识别出了你的账号，并不代表你拥有所有仓库的访问权限</p>
+<p>确认仓库地址是否正确，登录 GitHub 后能否直接打开任务仓库，以及有没有接受管理员发出的邀请</p>
+<p>如果网页也打不开仓库，请先联系管理员，不要反复配置 SSH</p>
+<h2 id="为什么提示-not-a-git-repository"><a class="markdownIt-Anchor" href="#为什么提示-not-a-git-repository"></a> 为什么提示 not a git repository？</h2>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fatal: not a git repository (or any of the parent directories): .git</span><br></pre></td></tr></table></figure>
+<p>大概率是你打开 Git Bash 的位置不对</p>
+<p>进入 <code>2026MHP-member</code> 仓库目录，再右键打开 Git Bash，执行 <code>git status</code> 检查即可</p>
+<p>不要为了消除这个报错，就在任意文件夹下执行 <code>git init</code></p>
+<h2 id="为什么提示-destination-path-already-exists"><a class="markdownIt-Anchor" href="#为什么提示-destination-path-already-exists"></a> 为什么提示 destination path already exists？</h2>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fatal: destination path &#x27;2026MHP-member&#x27; already exists and is not an empty directory.</span><br></pre></td></tr></table></figure>
+<p>说明当前目录下已经有一个同名的非空文件夹了</p>
+<p>如果之前已经 Clone 过，直接进入那个文件夹执行 <code>git status</code> 即可；如果它不是 Git 仓库，请先检查并备份里面的文件，再选择其他空目录 Clone</p>
+<p>一个仓库一般只需要 Clone 一次，后续用 Pull 更新就好</p>
+<h2 id="为什么提示分支已经存在-找不到分支"><a class="markdownIt-Anchor" href="#为什么提示分支已经存在-找不到分支"></a> 为什么提示分支已经存在 / 找不到分支？</h2>
+<p>如果出现：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fatal: a branch named &#x27;Uranicial&#x27; already exists</span><br></pre></td></tr></table></figure>
+<p>说明已经创建过该分支了，直接 <code>git switch Uranicial</code> 即可</p>
+<p>如果提示找不到分支，先查看本地和远程的分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin</span><br><span class="line">git branch -a</span><br></pre></td></tr></table></figure>
+<p>确认分支名称拼写无误（注意大小写）如果只存在远程分支，参考 5.1</p>
+<h2 id="为什么-commit-的时候提示-nothing-to-commit"><a class="markdownIt-Anchor" href="#为什么-commit-的时候提示-nothing-to-commit"></a> 为什么 Commit 的时候提示 nothing to commit？</h2>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nothing to commit, working tree clean</span><br></pre></td></tr></table></figure>
+<p>表示目前没有尚未提交的文件修改</p>
+<p>先确认文件是否保存到了正确的仓库文件夹，是否确实发生了修改，再用下面的命令查看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git <span class="built_in">log</span> -3 --oneline</span><br></pre></td></tr></table></figure>
+<p>也有可能是之前已经 Commit 过了，只是忘记 Push</p>
+<p>如果新增文件一直没有显示，可以检查文件是否被 <code>.gitignore</code> 忽略（不要随意修改公共的忽略规则）</p>
+<h2 id="为什么-push-的时候提示-no-upstream-branch"><a class="markdownIt-Anchor" href="#为什么-push-的时候提示-no-upstream-branch"></a> 为什么 Push 的时候提示 no upstream branch？</h2>
+<p>说明本地个人分支还没有建立跟踪关系，第一次推送时输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin Uranicial</span><br></pre></td></tr></table></figure>
+<p>以后直接 <code>git push</code> 即可</p>
+<h2 id="为什么-push-被-rejectednon-fast-forward"><a class="markdownIt-Anchor" href="#为什么-push-被-rejectednon-fast-forward"></a> 为什么 Push 被 rejected（non-fast-forward）？</h2>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">! [rejected] ... (non-fast-forward)</span><br></pre></td></tr></table></figure>
+<p>通常是远程个人分支上存在本地没有的提交，比如在另一台电脑提交过。</p>
+<p>先确认在自己的分支并且没有未保存的修改，然后输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin</span><br><span class="line">git merge origin/Uranicial</span><br></pre></td></tr></table></figure>
+<p>确认合并完成后再执行 <code>git push origin Uranicial</code></p>
+<p>如果遇到合并冲突，参考下一条。若不确定为什么远程分支多了修改，先联系管理员</p>
+<p><strong>不要看到 Push 失败就直接加 <code>-f</code> 或 <code>--force</code>，这有可能覆盖远程仓库的提交记录</strong></p>
+<h2 id="合并冲突merge-conflict怎么解决"><a class="markdownIt-Anchor" href="#合并冲突merge-conflict怎么解决"></a> 合并冲突（Merge Conflict）怎么解决？</h2>
+<p>如果遇到类似以下内容：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CONFLICT (content): Merge conflict in ...</span><br><span class="line">Automatic merge failed; fix conflicts and then commit the result.</span><br></pre></td></tr></table></figure>
+<p>说明两个分支对同一部分内容进行了不同修改，Git 不知道应该保留哪一份。</p>
+<p>先输入 <code>git status</code> 查看冲突文件，再用编辑器打开相关文本文件。通常会出现类似这样的内容：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line">当前分支的内容</span><br><span class="line">=======</span><br><span class="line">另一个分支的内容</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; main</span><br></pre></td></tr></table></figure>
+<p>根据实际情况保留正确的内容，并删除这些冲突标记</p>
+<p>保存后执行（示例文件名需替换成实际冲突文件路径）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add -- <span class="string">&quot;Uranicial/example.md&quot;</span></span><br><span class="line">git status</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure>
+<p>确认所有冲突都解决后再 Commit</p>
+<p>如果进入提交信息编辑器，保存默认合并说明并退出即可</p>
+<p>如果冲突的是 Word、PDF、图片等二进制文件，Git 通常不能像文本一样合并，请先确认应保留哪个版本，必要时联系管理员</p>
+<p>如果本次 Merge 刚开始、还没有完成，又不确定怎么处理，可以执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --abort</span><br></pre></td></tr></table></figure>
+<p>取消本次合并（已开始的冲突处理可能被撤销）。不要在不清楚后果的情况下执行 <code>git reset --hard</code></p>
+<h2 id="不小心在-main-分支上修改了文件"><a class="markdownIt-Anchor" href="#不小心在-main-分支上修改了文件"></a> 不小心在 main 分支上修改了文件</h2>
+<p>如果你只是修改了文件，还没有 Commit，先不要慌</p>
+<p>执行 <code>git status</code> 检查，再尝试切换到自己的分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git switch Uranicial</span><br></pre></td></tr></table></figure>
+<p>如果切换成功，确认修改也在个人分支中，然后按正常流程提交即可</p>
+<p>如果 Git 拒绝切换，先备份文件并联系管理员。如果已经在 <code>main</code> 上 Commit，也不要 Push，保留现场并联系管理员处理，避免修改记录丢失</p>
+<h2 id="已经-push-了为什么-main-里还是看不到我的提交"><a class="markdownIt-Anchor" href="#已经-push-了为什么-main-里还是看不到我的提交"></a> 已经 Push 了，为什么 main 里还是看不到我的提交？</h2>
+<p>请先在 GitHub 上切换到自己的分支查看文件是否存在</p>
+<p>如果存在，说明 Push 成功了。接下来检查是否已经创建 PR，以及 PR 是否已经被管理员 Merge</p>
+<p>再次强调一下，<code>Commit</code>、<code>Push</code> 和 <code>Merge</code> 是三件不同的事</p>
+<h2 id="pr-已经创建了发现作业有问题还能修改吗"><a class="markdownIt-Anchor" href="#pr-已经创建了发现作业有问题还能修改吗"></a> PR 已经创建了，发现作业有问题，还能修改吗？</h2>
+<p>可以。只要 PR 还处于 <code>Open</code> 状态，在原个人分支上修改并重新 <code>add</code>、<code>commit</code>、<code>push</code> 即可，原 PR 会同步更新</p>
+<p>如果已经 <code>Merged</code>，则按新的修改流程发起 PR</p>
 
     </div>
     <footer class="article-footer">
@@ -417,7 +668,7 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/covers/cover3.webp" data-sizes="auto" alt="折腾博客：Hexo 双仓库与 GitHub Actions 自动部署" class="lazyload">
+            <img data-src="/covers/cover2.webp" data-sizes="auto" alt="折腾博客：Hexo 双仓库与 GitHub Actions 自动部署" class="lazyload">
         <a href="/en/2026/10/29/%E6%8A%98%E8%85%BE%E5%8D%9A%E5%AE%A2%EF%BC%9AHexo%20%E5%8F%8C%E4%BB%93%E5%BA%93%E4%B8%8E%20GitHub%20Actions%20%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/" aria-label="Prev: 折腾博客：Hexo 双仓库与 GitHub Actions 自动部署" title="Prev: 折腾博客：Hexo 双仓库与 GitHub Actions 自动部署"></a>
         <div class="article-nav-caption">Prev</div>
         <h3 class="article-nav-title">
@@ -474,10 +725,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        2.8k
+        6.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:13
+        00:28
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -499,7 +750,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEgit%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text"> 配置Git本地仓库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEssh-key"><span class="toc-number">2.</span> <span class="toc-text"> 配置SSH Key</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%86github%E4%B8%8Egit%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text"> 将Github与Git远程连接</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E4%BB%93%E5%BA%93%E6%96%87%E4%BB%B6%E6%8F%90%E4%BA%A4%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text"> 拉取仓库文件&#x2F;提交本地文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E4%BB%93%E5%BA%93%E6%96%87%E4%BB%B6"><span class="toc-number">4.1.</span> <span class="toc-text"> 拉取仓库文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%88%87%E6%8D%A2"><span class="toc-number">4.2.</span> <span class="toc-text"> 分支创建与切换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6"><span class="toc-number">4.3.</span> <span class="toc-text"> 提交本地文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pull-request-merge"><span class="toc-number">5.</span> <span class="toc-text"> Pull Request &amp; Merge</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text"> 其他问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3-22-%E9%97%AE%E9%A2%98"><span class="toc-number">6.1.</span> <span class="toc-text"> 端口 22 问题</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-number">1.</span> <span class="toc-text"> 写在前面</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-%E5%92%8C-github-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text"> Git 和 GitHub 是什么</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEgit"><span class="toc-number">2.</span> <span class="toc-text"> 配置Git</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5-git-%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="toc-number">2.1.</span> <span class="toc-text"> 检查 Git 是否安装成功</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-username-%E5%92%8C-email"><span class="toc-number">2.2.</span> <span class="toc-text"> 设置 username 和 email</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEssh-key"><span class="toc-number">3.</span> <span class="toc-text"> 配置SSH Key</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%B7%B2%E7%BB%8F%E5%AD%98%E5%9C%A8-ssh-key"><span class="toc-number">3.1.</span> <span class="toc-text"> 检查是否已经存在 SSH Key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90-ssh-key"><span class="toc-number">3.2.</span> <span class="toc-text"> 生成 SSH Key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E5%85%AC%E9%92%A5%E6%B7%BB%E5%8A%A0%E8%87%B3-github"><span class="toc-number">3.3.</span> <span class="toc-text"> 将公钥添加至 GitHub</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%98%AF%E5%90%A6%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F"><span class="toc-number">3.4.</span> <span class="toc-text"> 测试是否配置成功</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%86-github-%E4%BB%93%E5%BA%93%E4%B8%8B%E8%BD%BD%E8%87%B3%E6%9C%AC%E5%9C%B0"><span class="toc-number">4.</span> <span class="toc-text"> 将 GitHub 仓库下载至本地</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#clone-%E4%BB%93%E5%BA%93"><span class="toc-number">4.1.</span> <span class="toc-text"> Clone 仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E4%BB%93%E5%BA%93"><span class="toc-number">4.2.</span> <span class="toc-text"> 进入仓库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E4%BB%93%E5%BA%93%E6%96%87%E4%BB%B6%E6%8F%90%E4%BA%A4%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6"><span class="toc-number">5.</span> <span class="toc-text"> 拉取仓库文件&#x2F;提交本地文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%88%86%E6%94%AF"><span class="toc-number">5.1.</span> <span class="toc-text"> 创建自己的分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%8F%E6%AC%A1%E5%BC%80%E5%A7%8B%E6%96%B0%E4%BB%BB%E5%8A%A1%E5%89%8D%E5%90%8C%E6%AD%A5%E4%BB%93%E5%BA%93"><span class="toc-number">5.2.</span> <span class="toc-text"> 每次开始新任务前，同步仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E6%94%BE%E4%BD%9C%E4%B8%9A%E6%96%87%E4%BB%B6"><span class="toc-number">5.3.</span> <span class="toc-text"> 存放作业文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6"><span class="toc-number">5.4.</span> <span class="toc-text"> 提交本地文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E9%80%81%E8%87%B3-github"><span class="toc-number">5.5.</span> <span class="toc-text"> 推送至 GitHub</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pull-request-merge"><span class="toc-number">6.</span> <span class="toc-text"> Pull Request &amp; Merge</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E8%B5%B7-pull-request"><span class="toc-number">6.1.</span> <span class="toc-text"> 发起 Pull Request</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%89%E5%BE%85%E5%AE%A1%E6%A0%B8%E5%8F%8A%E4%BF%AE%E6%94%B9"><span class="toc-number">6.2.</span> <span class="toc-text"> 等待审核及修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E6%AC%A1%E6%8F%90%E4%BA%A4%E6%97%B6%E8%AF%A5%E5%81%9A%E4%BB%80%E4%B9%88"><span class="toc-number">6.3.</span> <span class="toc-text"> 下次提交时该做什么</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A5%E5%B8%B8%E6%8F%90%E4%BA%A4%E9%80%9F%E6%9F%A5"><span class="toc-number">7.</span> <span class="toc-text"> 日常提交速查</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98faq"><span class="toc-number">8.</span> <span class="toc-text"> 其他问题（FAQ）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3-22-%E9%97%AE%E9%A2%98"><span class="toc-number">8.1.</span> <span class="toc-text"> 端口 22 问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8F%90%E7%A4%BA-permission-denied-publickey"><span class="toc-number">8.2.</span> <span class="toc-text"> 为什么提示 Permission denied (publickey)？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssh-%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F%E4%BA%86%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E6%98%AF-repository-not-found"><span class="toc-number">8.3.</span> <span class="toc-text"> SSH 测试成功了，为什么还是 Repository not found？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8F%90%E7%A4%BA-not-a-git-repository"><span class="toc-number">8.4.</span> <span class="toc-text"> 为什么提示 not a git repository？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8F%90%E7%A4%BA-destination-path-already-exists"><span class="toc-number">8.5.</span> <span class="toc-text"> 为什么提示 destination path already exists？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8F%90%E7%A4%BA%E5%88%86%E6%94%AF%E5%B7%B2%E7%BB%8F%E5%AD%98%E5%9C%A8-%E6%89%BE%E4%B8%8D%E5%88%B0%E5%88%86%E6%94%AF"><span class="toc-number">8.6.</span> <span class="toc-text"> 为什么提示分支已经存在 &#x2F; 找不到分支？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-commit-%E7%9A%84%E6%97%B6%E5%80%99%E6%8F%90%E7%A4%BA-nothing-to-commit"><span class="toc-number">8.7.</span> <span class="toc-text"> 为什么 Commit 的时候提示 nothing to commit？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-push-%E7%9A%84%E6%97%B6%E5%80%99%E6%8F%90%E7%A4%BA-no-upstream-branch"><span class="toc-number">8.8.</span> <span class="toc-text"> 为什么 Push 的时候提示 no upstream branch？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-push-%E8%A2%AB-rejectednon-fast-forward"><span class="toc-number">8.9.</span> <span class="toc-text"> 为什么 Push 被 rejected（non-fast-forward）？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E5%86%B2%E7%AA%81merge-conflict%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3"><span class="toc-number">8.10.</span> <span class="toc-text"> 合并冲突（Merge Conflict）怎么解决？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%B0%8F%E5%BF%83%E5%9C%A8-main-%E5%88%86%E6%94%AF%E4%B8%8A%E4%BF%AE%E6%94%B9%E4%BA%86%E6%96%87%E4%BB%B6"><span class="toc-number">8.11.</span> <span class="toc-text"> 不小心在 main 分支上修改了文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%B2%E7%BB%8F-push-%E4%BA%86%E4%B8%BA%E4%BB%80%E4%B9%88-main-%E9%87%8C%E8%BF%98%E6%98%AF%E7%9C%8B%E4%B8%8D%E5%88%B0%E6%88%91%E7%9A%84%E6%8F%90%E4%BA%A4"><span class="toc-number">8.12.</span> <span class="toc-text"> 已经 Push 了，为什么 main 里还是看不到我的提交？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pr-%E5%B7%B2%E7%BB%8F%E5%88%9B%E5%BB%BA%E4%BA%86%E5%8F%91%E7%8E%B0%E4%BD%9C%E4%B8%9A%E6%9C%89%E9%97%AE%E9%A2%98%E8%BF%98%E8%83%BD%E4%BF%AE%E6%94%B9%E5%90%97"><span class="toc-number">8.13.</span> <span class="toc-text"> PR 已经创建了，发现作业有问题，还能修改吗？</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -658,9 +909,9 @@
           url: "https://uranicial.github.io/2026/10/29/MHP-%E9%9D%A2%E5%90%91%E5%AE%9E%E9%AA%8C%E5%AE%A4%E6%96%B0%E4%BA%BA%E3%81%AEGit%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B/",
           excerpt: "",
           description: "",
-          stripContent: "出于这样那样的原因，本人觉得有必要再更新一版 Git 相关的配置流程。 参考这份教程前，请确认以下几点 1.已经正确安装 Git 并完成相关设置 2.已注册 GitHub 账号  3.确认你的网络环境稳定  配置Git本地仓库 打开Git bash 依次输入以下命令以设置username和email 12git config --global user.name &amp;quot;username&amp;quot; #自定义用户名git config --global user.email &amp;quot;ex",
+          stripContent: "出于这样那样的原因，本人觉得有必要再再再更新一版 Git 相关的配置流程。这次尽量把what,why,how讲清楚，顺便补充一些各位在提交作业时可能会遇到的问题 如果你是第一次接触 Git，请按顺序看完前五节；如果之前已经配置过 Git，只是不知道怎么提交作业，可以直接跳到第四节  写在前面 参考这份教程前，请确认以下几点：  已经正确安装 Git 已注册 GitHub 账号 已获得实验室任务仓库的访问权限（如果收到了仓库邀请，请先接受） 确认你的网络环境可以正常访问 GitHub  本教程以 ",
           date: "Thu Oct 29 2026 18:00:00 GMT+0800",
-          updated: "Sun Nov 08 2026 23:09:00 GMT+0800",
+          updated: "Wed Nov 25 2026 12:47:00 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
