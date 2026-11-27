@@ -1,0 +1,1401 @@
+  <!DOCTYPE html>
+  <html lang="en"  data-theme-mode="auto">
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)","en":"Copy successfully (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","en":"Copy failed (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://uranicial.github.io';window.REIMU_CONFIG.relative = '/';window.REIMU_CONFIG.i18n_languages = ["en"];window.REIMU_CONFIG.dark_mode = {"button":true,"mode":"auto"};</script>
+  <title>
+    Git 提交规范 | Uranicial
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic|JetBrains Mono:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic|JetBrains Mono:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="介绍 Git 提交规范，包括约定式提交、Gitmoji、语义化版本、原子化提交及相关自动化工具，旨在提高提交记录的可读性与团队协作效率">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 提交规范">
+<meta property="og:url" content="https://uranicial.github.io/en/2026/11/26/Git%20%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/index.html">
+<meta property="og:site_name" content="Uranicial">
+<meta property="og:description" content="介绍 Git 提交规范，包括约定式提交、Gitmoji、语义化版本、原子化提交及相关自动化工具，旨在提高提交记录的可读性与团队协作效率">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-11-26T13:30:00.000Z">
+<meta property="article:modified_time" content="2026-11-27T05:00:18.624Z">
+<meta property="article:author" content="Uranicial">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+      <meta name="keywords" content="blog, urancial, hexo">
+    <link rel="alternate" href="/atom.xml" title="Uranicial" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.png">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+      <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/katex@0.16.47/dist/katex.min.css" integrity="sha384-nH0MfJ44wi1dd7w6jinlyBgljjS8EJAh2JBoRad8a3VDw2K69vfaaqm4WnR+gXtA" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.3/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU/voDBY5XE2lVh" crossorigin="anonymous">
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/en/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Home</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/en/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Archives</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/en/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">About</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/en/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Friend</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" aria-label="RSS Feed" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="Search" aria-label="Search"></a>
+  </nav>
+    <nav id="i18n-nav" aria-label="Language selection">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">English</span>
+        </div>
+        <ul class="select-items" id="select-items" role="listbox" aria-label="Languages">
+            <li data-value="zh-CN" role="option" aria-selected="false">简体中文</li>
+            <li data-value="en" role="option" class="selected" aria-selected="true">English</li>
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+          var expanded = selectSelected.getAttribute("aria-expanded") === "true";
+          selectSelected.setAttribute("aria-expanded", (!expanded).toString());
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+              langMap['zh-CN'] = '/2026/11/26/Git 提交规范/';
+              langMap['en'] = '/en/2026/11/26/Git 提交规范/';
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+            selectSelected.setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="/images/banner.webp" alt="Git 提交规范">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">Git 提交规范</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+      <meting-js
+        theme="var(--color-link)"
+        id="2265921590"
+        server="netease"
+        type="playlist"
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      ></meting-js>
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text"> 引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BB%E6%B5%81%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83"><span class="toc-number">2.</span> <span class="toc-text"> 主流提交规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#conventional-commits%E7%BA%A6%E5%AE%9A%E5%BC%8F%E6%8F%90%E4%BA%A4"><span class="toc-number">3.</span> <span class="toc-text"> Conventional Commits（约定式提交）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text"> 基本格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#type-%E6%8F%90%E4%BA%A4%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.2.</span> <span class="toc-text"> Type (提交类型)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%8F%AF%E9%80%89%E6%89%A9%E5%B1%95%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 其他可选扩展类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scope%E5%BD%B1%E5%93%8D%E8%8C%83%E5%9B%B4"><span class="toc-number">3.3.</span> <span class="toc-text"> Scope（影响范围）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#description%E7%AE%80%E7%9F%AD%E6%8F%8F%E8%BF%B0"><span class="toc-number">3.4.</span> <span class="toc-text"> Description（简短描述）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#body%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0"><span class="toc-number">3.5.</span> <span class="toc-text"> Body（详细描述）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#footer%E9%99%84%E5%8A%A0%E4%BF%A1%E6%81%AF"><span class="toc-number">3.6.</span> <span class="toc-text"> Footer（附加信息）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#breaking-change%E7%A0%B4%E5%9D%8F%E6%80%A7%E5%8F%98%E6%9B%B4"><span class="toc-number">3.7.</span> <span class="toc-text"> Breaking Change（破坏性变更）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E6%8F%90%E4%BA%A4%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text"> 容易混淆的提交类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gitmoji-%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83"><span class="toc-number">5.</span> <span class="toc-text"> Gitmoji 提交规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B7%E5%90%88%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83"><span class="toc-number">6.</span> <span class="toc-text"> 混合提交规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#commit-%E4%B8%8E%E8%AF%AD%E4%B9%89%E5%8C%96%E7%89%88%E6%9C%ACsemver"><span class="toc-number">7.</span> <span class="toc-text"> Commit 与语义化版本（SemVer）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="toc-number">7.1.</span> <span class="toc-text"> 版本格式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E8%A1%8C%E4%B8%BA%E8%A7%84%E8%8C%83"><span class="toc-number">8.</span> <span class="toc-text"> 提交行为规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%84%E8%8C%83%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7"><span class="toc-number">9.</span> <span class="toc-text"> 规范自动化工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">10.</span> <span class="toc-text"> 结语</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">11.</span> <span class="toc-text"> 参考</span></a></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Uranicial" class="lazyload">
+  <div class="sidebar-author-name">Uranicial</div>
+  <div class="sidebar-description">Wubba lubba dub dub</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">5</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/Uranicial itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/39545640 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-steam sidebar-social-icon">
+      <a href=https://steamcommunity.com/profiles/76561199015325979/ itemprop="url" target="_blank" aria-label="steam" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="Home"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="Archives"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="About"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="Friend"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-Git 提交规范" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-11-26T13:30:00.000Z" itemprop="datePublished">2026-11-26</time>
+    <time style="display: none;" id="post-update-time">2026-11-27</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h1>
+<p>本人平时一直在捣鼓各种个人项目，也参与实验室的团队项目，长期保持着随心所欲编写 Commit Message 的优良传统</p>
+<p>然而，近期在维护个人博客及其他项目时，翻看过去的提交记录，发现连自己都已经搞不清楚当时究竟修改了些什么</p>
+<p>于是鄙人痛定思痛，决定整理一份 Git 提交规范，既作为个人开发的参考，也方便今后的团队协作</p>
+<h1 id="主流提交规范"><a class="markdownIt-Anchor" href="#主流提交规范"></a> 主流提交规范</h1>
+<p>目前常见的 Git 提交规范及提交风格主要有以下几种：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">规范</th>
+<th>提交示例</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Conventional Commits</td>
+<td><code>feat(auth): add login</code></td>
+<td>标准化程度高，适合自动化</td>
+</tr>
+<tr>
+<td style="text-align:left">Angular Convention</td>
+<td><code>fix(core): resolve crash</code></td>
+<td>约束更加严格，强调模块与正文</td>
+</tr>
+<tr>
+<td style="text-align:left">Gitmoji</td>
+<td><code>✨ Add login feature</code></td>
+<td>使用 Emoji 标识提交类型</td>
+</tr>
+<tr>
+<td style="text-align:left">Git 传统风格</td>
+<td><code>Add login feature</code></td>
+<td>简单直接，侧重自然语言描述</td>
+</tr>
+<tr>
+<td style="text-align:left">混合规范</td>
+<td><code>✨ feat(auth): add login</code></td>
+<td>兼顾可读性与结构化，但需要适配工具</td>
+</tr>
+</tbody>
+</table>
+<p>其中，Conventional Commits（约定式提交）是一种应用广泛的提交规范，具有结构清晰、易于理解、便于自动化处理等特点，适用于个人项目及团队协作</p>
+<p>Git 本身并不强制采用某种提交规范，同时不同项目团队之间的提交规范也可能不同</p>
+<p>一套良好的 Commit 规范主要解决以下问题：</p>
+<ul>
+<li>统一团队成员的提交信息格式</li>
+<li>快速识别每次提交的目的和影响范围</li>
+<li>提高代码审查（Code Review）的效率</li>
+<li>自动生成更新日志（CHANGELOG）</li>
+<li>配合语义化版本（SemVer）实现自动版本管理和发布</li>
+<li>方便后续定位问题、回滚代码和追溯历史</li>
+</ul>
+<h1 id="conventional-commits约定式提交"><a class="markdownIt-Anchor" href="#conventional-commits约定式提交"></a> Conventional Commits（约定式提交）</h1>
+<p>Conventional Commits (约定式提交)基于<code>Angular</code>提交信息准则，提供了更加通用、简洁和灵活的提交规范，并便于自动化工具解析，从而实现更新日志生成、语义化版本管理及自动化发布等功能</p>
+<h2 id="基本格式"><a class="markdownIt-Anchor" href="#基本格式"></a> 基本格式</h2>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;type&gt;[(&lt;scope&gt;)][!]: &lt;description&gt;</span><br><span class="line"></span><br><span class="line">[body]</span><br><span class="line"></span><br><span class="line">[footer(s)]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><code>Type</code>:提交类型（必填）</p>
+</li>
+<li>
+<p><code>Scope</code>:影响范围（可选）</p>
+</li>
+<li>
+<p><code>!</code>:不兼容变更标记（可选）</p>
+</li>
+<li>
+<p><code>Description</code>:简短描述（必填）</p>
+</li>
+<li>
+<p><code>Body</code>:详细描述（可选）</p>
+</li>
+<li>
+<p><code>Footer</code>:附加信息（可选）</p>
+</li>
+</ul>
+<p><strong>提交示例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;feat(auth): add login feature&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="type-提交类型"><a class="markdownIt-Anchor" href="#type-提交类型"></a> Type (提交类型)</h2>
+<p>这是整套提交规范中最重要的部分，以下是 Conventional Commits 及其常见扩展所采用的类型：</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>含义</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>feat</code></td>
+<td>新功能</td>
+<td>新增功能、页面、接口</td>
+</tr>
+<tr>
+<td><code>fix</code></td>
+<td>修复缺陷</td>
+<td>修复 Bug、异常、错误逻辑</td>
+</tr>
+<tr>
+<td><code>docs</code></td>
+<td>文档变更</td>
+<td>修改 README、开发文档</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>代码格式</td>
+<td>缩进、空格、分号调整</td>
+</tr>
+<tr>
+<td><code>refactor</code></td>
+<td>代码重构</td>
+<td>不改变功能的代码结构调整</td>
+</tr>
+<tr>
+<td><code>perf</code></td>
+<td>性能优化</td>
+<td>优化运行速度、内存占用</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>测试相关</td>
+<td>新增或修改测试代码</td>
+</tr>
+<tr>
+<td><code>build</code></td>
+<td>构建相关</td>
+<td>Gradle、Maven、依赖管理</td>
+</tr>
+<tr>
+<td><code>ci</code></td>
+<td>持续集成</td>
+<td>GitHub Actions、CI/CD 配置</td>
+</tr>
+<tr>
+<td><code>chore</code></td>
+<td>日常维护</td>
+<td>杂项配置、辅助工具维护</td>
+</tr>
+<tr>
+<td><code>revert</code></td>
+<td>回退提交</td>
+<td>撤销之前的 Commit</td>
+</tr>
+</tbody>
+</table>
+<p>需要注意的是，Conventional Commits 官方规范明确规定了 <code>feat</code> 和 <code>fix</code> 的语义，其他类型是被广泛采用的扩展，并非全部由官方强制规定</p>
+<h3 id="其他可选扩展类型"><a class="markdownIt-Anchor" href="#其他可选扩展类型"></a> 其他可选扩展类型</h3>
+<p>团队也可以根据业务需求增加如下类型</p>
+<p>但不建议一开始引入过多扩展类型，类型之间可能产生语义重叠，增加团队成员判断成本</p>
+<p>例如，<code>deps</code> 可以归入 <code>build</code>，<code>hotfix</code> 可以归入 <code>fix</code>，不一定需要单独定义</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>init</code></td>
+<td>项目初始化</td>
+</tr>
+<tr>
+<td><code>release</code></td>
+<td>发布新版本</td>
+</tr>
+<tr>
+<td><code>deps</code></td>
+<td>依赖更新</td>
+</tr>
+<tr>
+<td><code>hotfix</code></td>
+<td>紧急修复</td>
+</tr>
+<tr>
+<td><code>security</code></td>
+<td>安全相关修复</td>
+</tr>
+<tr>
+<td><code>i18n</code></td>
+<td>国际化与本地化</td>
+</tr>
+<tr>
+<td><code>ui</code></td>
+<td>界面及视觉调整</td>
+</tr>
+<tr>
+<td><code>config</code></td>
+<td>配置文件修改</td>
+</tr>
+<tr>
+<td><code>assets</code></td>
+<td>图片、字体等资源变更</td>
+</tr>
+<tr>
+<td><code>wip</code></td>
+<td>尚未完成的开发工作</td>
+</tr>
+<tr>
+<td><code>remove</code></td>
+<td>删除功能或文件</td>
+</tr>
+</tbody>
+</table>
+<h2 id="scope影响范围"><a class="markdownIt-Anchor" href="#scope影响范围"></a> Scope（影响范围）</h2>
+<p>Scope 用于描述本次提交涉及的模块、组件或者业务范围</p>
+<p>Scope 没有统一的取值标准，通常由项目自行定义，建议与项目模块结构或业务划分保持一致</p>
+<p>以一个 Android 应用项目为例</p>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>影响范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auth</code></td>
+<td>用户认证</td>
+</tr>
+<tr>
+<td><code>ui</code></td>
+<td>用户界面</td>
+</tr>
+<tr>
+<td><code>home</code></td>
+<td>首页模块</td>
+</tr>
+<tr>
+<td><code>database</code></td>
+<td>数据库模块</td>
+</tr>
+<tr>
+<td><code>network</code></td>
+<td>网络请求</td>
+</tr>
+<tr>
+<td><code>api</code></td>
+<td>接口模块</td>
+</tr>
+<tr>
+<td><code>settings</code></td>
+<td>设置模块</td>
+</tr>
+<tr>
+<td><code>navigation</code></td>
+<td>页面导航</td>
+</tr>
+<tr>
+<td><code>gradle</code></td>
+<td>Gradle 构建</td>
+</tr>
+<tr>
+<td><code>deps</code></td>
+<td>项目依赖</td>
+</tr>
+<tr>
+<td><code>readme</code></td>
+<td>README 文档</td>
+</tr>
+<tr>
+<td><code>workflow</code></td>
+<td>自动化工作流</td>
+</tr>
+</tbody>
+</table>
+<p>实际提交示例:</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">feat(auth): add user registration</span><br><span class="line">fix(database): resolve duplicate records</span><br><span class="line">refactor(network): extract request handler</span><br><span class="line">build(gradle): upgrade Kotlin version</span><br><span class="line">docs(readme): update installation guide</span><br><span class="line">ci(workflow): add automatic build</span><br></pre></td></tr></table></figure>
+<h2 id="description简短描述"><a class="markdownIt-Anchor" href="#description简短描述"></a> Description（简短描述）</h2>
+<p>这里建议采用以下规则：</p>
+<ul>
+<li>使用动词原形开头，例如 <code>add</code>、<code>fix</code>、<code>update</code></li>
+<li>英文描述首字母小写</li>
+<li>结尾不添加句号</li>
+<li>准确描述本次提交的实际变更</li>
+<li>尽量将标题控制在 50～72 个字符以内</li>
+</ul>
+<p>其中，Git 项目自身将 50 个字符作为软限制，并推荐使用祈使语气、不在标题末尾添加句号</p>
+<p>附上常用英文动词：</p>
+<table>
+<thead>
+<tr>
+<th>动词</th>
+<th>含义</th>
+<th>动词</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>add</td>
+<td>添加</td>
+<td>remove</td>
+<td>删除</td>
+</tr>
+<tr>
+<td>update</td>
+<td>更新</td>
+<td>rename</td>
+<td>重命名</td>
+</tr>
+<tr>
+<td>fix</td>
+<td>修复</td>
+<td>replace</td>
+<td>替换</td>
+</tr>
+<tr>
+<td>improve</td>
+<td>改进</td>
+<td>optimize</td>
+<td>优化</td>
+</tr>
+<tr>
+<td>implement</td>
+<td>实现</td>
+<td>simplify</td>
+<td>简化</td>
+</tr>
+<tr>
+<td>enable</td>
+<td>启用</td>
+<td>disable</td>
+<td>禁用</td>
+</tr>
+<tr>
+<td>upgrade</td>
+<td>升级</td>
+<td>extract</td>
+<td>提取</td>
+</tr>
+<tr>
+<td>support</td>
+<td>支持</td>
+<td>migrate</td>
+<td>迁移</td>
+</tr>
+</tbody>
+</table>
+<h2 id="body详细描述"><a class="markdownIt-Anchor" href="#body详细描述"></a> Body（详细描述）</h2>
+<p>对于比较复杂的提交，可以在标题下方空一行，描述修改原因、具体内容及影响</p>
+<p>Body 应重点说明 <strong>为什么修改、修改了什么、产生什么影响</strong>，而不是简单重复标题</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">feat(auth): add biometric authentication</span><br><span class="line"></span><br><span class="line">Reduce the need for users to enter their passwords</span><br><span class="line">during repeated login attempts.</span><br><span class="line"></span><br><span class="line">- Add fingerprint authentication</span><br><span class="line">- Support face recognition</span><br><span class="line">- Add password authentication fallback</span><br></pre></td></tr></table></figure>
+<h2 id="footer附加信息"><a class="markdownIt-Anchor" href="#footer附加信息"></a> Footer（附加信息）</h2>
+<p>Footer 通常用于关联 Issue、标识贡献者和声明不兼容变更</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fix(auth): resolve login timeout</span><br><span class="line"></span><br><span class="line">Increase the request timeout and improve error handling.</span><br><span class="line"></span><br><span class="line">Closes #42</span><br></pre></td></tr></table></figure>
+<p>GitHub 支持通过特定关键字关联 Issue，在相应提交进入默认分支等满足条件的情况下自动关闭 Issue</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Closes #42</span><br><span class="line">Fixes #42</span><br><span class="line">Resolves #42</span><br><span class="line">Refs: #42</span><br><span class="line">Co-authored-by: username &lt;email&gt;</span><br></pre></td></tr></table></figure>
+<p>其中 <code>Refs</code> 通常只用于引用，不表示自动关闭</p>
+<h2 id="breaking-change破坏性变更"><a class="markdownIt-Anchor" href="#breaking-change破坏性变更"></a> Breaking Change（破坏性变更）</h2>
+<p>如果修改导致旧版本的接口或使用方式不再兼容，可以使用 <code>!</code> 或 <code>BREAKING CHANGE</code> 标记，也可以同时使用两者</p>
+<p>例如删除旧接口、修改公共函数参数、改变不兼容的数据格式等</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">feat(api)!: redesign authentication API</span><br><span class="line"></span><br><span class="line">BREAKING CHANGE: remove legacy login endpoint	#Footer</span><br></pre></td></tr></table></figure>
+<h1 id="容易混淆的提交类型"><a class="markdownIt-Anchor" href="#容易混淆的提交类型"></a> 容易混淆的提交类型</h1>
+<table>
+<thead>
+<tr>
+<th>实际操作</th>
+<th>推荐类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新增一个页面</td>
+<td><code>feat</code></td>
+</tr>
+<tr>
+<td>修改页面的视觉样式</td>
+<td><code>feat</code> 或自定义 <code>ui</code></td>
+</tr>
+<tr>
+<td>调整代码缩进</td>
+<td><code>style</code></td>
+</tr>
+<tr>
+<td>修复页面显示异常</td>
+<td><code>fix</code></td>
+</tr>
+<tr>
+<td>重新封装一个组件</td>
+<td><code>refactor</code></td>
+</tr>
+<tr>
+<td>减少页面加载时间</td>
+<td><code>perf</code></td>
+</tr>
+<tr>
+<td>升级 Kotlin、Gradle</td>
+<td><code>build</code></td>
+</tr>
+<tr>
+<td>修改 GitHub Actions</td>
+<td><code>ci</code></td>
+</tr>
+<tr>
+<td>修改 <code>.gitignore</code></td>
+<td><code>chore</code></td>
+</tr>
+<tr>
+<td>修改 README</td>
+<td><code>docs</code></td>
+</tr>
+<tr>
+<td>删除无用代码</td>
+<td><code>refactor</code></td>
+</tr>
+<tr>
+<td>删除已有业务功能</td>
+<td><code>feat</code>，不兼容时标记 <code>!</code></td>
+</tr>
+<tr>
+<td>撤销之前的提交</td>
+<td><code>revert</code></td>
+</tr>
+</tbody>
+</table>
+<p>特别注意：<code>style</code> <strong>指的是代码格式，而不是 UI 样式。</strong></p>
+<h1 id="gitmoji-提交规范"><a class="markdownIt-Anchor" href="#gitmoji-提交规范"></a> Gitmoji 提交规范</h1>
+<p>Gitmoji 是一种使用 Emoji 标识 Git 提交意图的提交规范，通过不同的 Emoji 区分提交类型，使提交记录更加直观<s>而且看起来很有意思</s>，这里不过多赘述</p>
+<p>官方完整规范：<a target="_blank" rel="noopener" href="https://gitmoji.dev/">Gitmoji</a></p>
+<p>基本格式：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;intention&gt; [scope?] &lt;message&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="混合提交规范"><a class="markdownIt-Anchor" href="#混合提交规范"></a> 混合提交规范</h1>
+<p>如果希望同时兼顾 Conventional Commits 的结构化和 Gitmoji 的视觉效果，也可以自定义混合规范</p>
+<p><strong>Emoji前置</strong></p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;emoji&gt; &lt;type&gt;(&lt;scope&gt;): &lt;description&gt;</span><br></pre></td></tr></table></figure>
+<p>视觉效果比较好，但部分 Conventional Commits 解析工具需要自定义解析规则</p>
+<p><strong>将 Emoji 放在 Description 中</strong></p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;type&gt;(&lt;scope&gt;): &lt;emoji&gt; &lt;description&gt;</span><br></pre></td></tr></table></figure>
+<p>这种方式保留了 Conventional Commits 的标准结构，更容易兼容自动化工具</p>
+<h1 id="commit-与语义化版本semver"><a class="markdownIt-Anchor" href="#commit-与语义化版本semver"></a> Commit 与语义化版本（SemVer）</h1>
+<p>Conventional Commits 的重要优势是可以与语义化版本管理结合</p>
+<p>Semantic Versioning（简称 SemVer，语义化版本）是一套由 Tom Preston-Werner 提出的软件版本命名规范，旨在通过统一的版本号格式及递增规则，明确不同版本之间的功能变化与兼容性关系</p>
+<h3 id="版本格式"><a class="markdownIt-Anchor" href="#版本格式"></a> 版本格式</h3>
+<p>版本号命名如下：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MAJOR.MINOR.PATCH	#主版本号.次版本号.修订号</span><br></pre></td></tr></table></figure>
+<p>版本号递增规则：</p>
+<ul>
+<li>
+<p><code>MAJOR version</code>：不兼容的变更</p>
+</li>
+<li>
+<p><code>MINOR version</code>：向下兼容的新功能</p>
+</li>
+<li>
+<p><code>PATCH version</code>：向下兼容的<code>bug</code>修复</p>
+</li>
+</ul>
+<h1 id="提交行为规范"><a class="markdownIt-Anchor" href="#提交行为规范"></a> 提交行为规范</h1>
+<p>同时，除了对提交信息的格式进行约束之外，本人也建议对提交行为本身进行规范</p>
+<p><strong>原子化提交（Atomic Commit）</strong> 是其中一个重要原则，即每次提交应当围绕一个明确且相对独立的目标展开</p>
+<p>如果一次修改包含多个彼此独立的任务，例如新增功能、修复缺陷和调整代码格式，则应尽可能将其拆分为多个独立提交</p>
+<p>需要注意的是，原子化提交并不意味着一次提交只能修改一个文件或模块。只要这些修改服务于同一个目标，就可以包含在同一次提交中</p>
+<p>此外，应避免将密码、API Key、临时文件及不需要纳入版本控制的构建产物提交至仓库。提交前应检查实际变更，并尽可能保证每次提交均处于可构建、可测试的状态</p>
+<h1 id="规范自动化工具"><a class="markdownIt-Anchor" href="#规范自动化工具"></a> 规范自动化工具</h1>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://commitlint.js.org/">Commitlint</a></td>
+<td>自动检查提交信息是否符合规范</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/commitizen/cz-cli">Commitizen</a></td>
+<td>交互式生成规范提交信息</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://typicode.github.io/husky/">Husky</a></td>
+<td>配合 Git Hooks 执行提交前检查</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://lefthook.dev/">Lefthook</a></td>
+<td>跨语言 Git Hooks 管理</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/semantic-release/semantic-release">semantic-release</a></td>
+<td>自动版本管理与发布</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://git-cliff.org/">git-cliff</a></td>
+<td>自动生成 CHANGELOG</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/carloscuesta/gitmoji-cli">Gitmoji CLI</a></td>
+<td>交互式 Emoji 提交</td>
+</tr>
+<tr>
+<td>GitHub Actions</td>
+<td>在 CI 中执行提交规范检查</td>
+</tr>
+</tbody>
+</table>
+<h1 id="结语"><a class="markdownIt-Anchor" href="#结语"></a> 结语</h1>
+<p>Git 提交规范的意义并不在于增加开发过程中的形式主义，而在于通过相对统一的约定，使代码变更更容易被理解、追溯和维护</p>
+<p>对于个人项目而言，规范的提交信息能够帮助未来的自己快速理解过去的修改；对于团队项目而言，则有助于降低沟通成本，提高代码审查和协作效率</p>
+<p>当然，提交规范并非一成不变。不同项目可以根据自身需求制定合适的提交类型、影响范围及自动化流程，没有必要为了遵循某种规范而引入过于复杂的约束</p>
+<p>规范应当服务于开发，而不是成为开发的负担</p>
+<p>至于本人，希望今后翻看自己的 Git 提交记录时，不必再靠猜测来理解过去的自己究竟干了些什么</p>
+<h1 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h1>
+<p><a target="_blank" rel="noopener" href="https://www.conventionalcommits.org/zh-hans/v1.0.0/">Conventional Commits 中文规范</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/angular/angular/blob/main/contributing-docs/commit-message-guidelines.md">Angular 提交规范</a></p>
+<p><a target="_blank" rel="noopener" href="https://gitmoji.dev/">Gitmoji</a></p>
+<p><a target="_blank" rel="noopener" href="https://semver.org/lang/zh-CN/">语义化版本规范</a></p>
+<p><a target="_blank" rel="noopener" href="https://commitlint.js.org/reference/rules.html">Commitlint 规则</a></p>
+<p><a target="_blank" rel="noopener" href="https://git-scm.com/docs/SubmittingPatches">Git 官方贡献指南</a></p>
+
+    </div>
+    <footer class="article-footer">
+        <blockquote class="article-copyright">
+    <p><strong><span class="icon-user icon"></span>Author: </strong>Uranicial</p>
+    <p><strong><span class="icon-link icon"></span>Permalink: </strong><a href="https://uranicial.github.io/en/2026/11/26/Git%20%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/">https://uranicial.github.io/en/2026/11/26/Git%20%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/</a></p>
+    
+    
+    
+    <p><strong><span class="icon-copyright icon"></span>License: </strong>All articles on this blog are licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> license agreement unless otherwise stated. Please indicate the source when reprinting!</p>
+    <span class="icon-creative-commons article-copyright-bg"></span>
+  </blockquote>
+        <a class="article-category-link" href="/en/categories/Git/" title="Git" data-aos="zoom-in">Git</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/en/tags/Git/" rel="tag" title="Git">Git</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+    <div class="article-nav-link-wrap right">
+          <img data-src="/covers/cover1.webp" data-sizes="auto" alt="折腾博客：Hexo 双仓库与 GitHub Actions 自动部署" class="lazyload">
+      <a href="/en/2026/10/29/%E6%8A%98%E8%85%BE%E5%8D%9A%E5%AE%A2%EF%BC%9AHexo%20%E5%8F%8C%E4%BB%93%E5%BA%93%E4%B8%8E%20GitHub%20Actions%20%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/" aria-label="Next: 折腾博客：Hexo 双仓库与 GitHub Actions 自动部署"  title="Next: 折腾博客：Hexo 双仓库与 GitHub Actions 自动部署"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+          折腾博客：Hexo 双仓库与 GitHub Actions 自动部署
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+        
+      <h2 class="comment-title">Leave a comment</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            <div class="selector-item" data-selector="giscus">
+              <span>giscus</span>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+          <div class="comment giscus-comment" data-aos="fade-up"
+            id="giscus-comment">
+          </div>
+    </div>
+  </section>
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2025-2026
+        <span class="footer-info-sep rotate"></span>
+      Uranicial
+    </div>
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        9.6k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:39
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text"> 引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BB%E6%B5%81%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83"><span class="toc-number">2.</span> <span class="toc-text"> 主流提交规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#conventional-commits%E7%BA%A6%E5%AE%9A%E5%BC%8F%E6%8F%90%E4%BA%A4"><span class="toc-number">3.</span> <span class="toc-text"> Conventional Commits（约定式提交）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text"> 基本格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#type-%E6%8F%90%E4%BA%A4%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.2.</span> <span class="toc-text"> Type (提交类型)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%8F%AF%E9%80%89%E6%89%A9%E5%B1%95%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 其他可选扩展类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scope%E5%BD%B1%E5%93%8D%E8%8C%83%E5%9B%B4"><span class="toc-number">3.3.</span> <span class="toc-text"> Scope（影响范围）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#description%E7%AE%80%E7%9F%AD%E6%8F%8F%E8%BF%B0"><span class="toc-number">3.4.</span> <span class="toc-text"> Description（简短描述）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#body%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0"><span class="toc-number">3.5.</span> <span class="toc-text"> Body（详细描述）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#footer%E9%99%84%E5%8A%A0%E4%BF%A1%E6%81%AF"><span class="toc-number">3.6.</span> <span class="toc-text"> Footer（附加信息）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#breaking-change%E7%A0%B4%E5%9D%8F%E6%80%A7%E5%8F%98%E6%9B%B4"><span class="toc-number">3.7.</span> <span class="toc-text"> Breaking Change（破坏性变更）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E6%8F%90%E4%BA%A4%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text"> 容易混淆的提交类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gitmoji-%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83"><span class="toc-number">5.</span> <span class="toc-text"> Gitmoji 提交规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B7%E5%90%88%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83"><span class="toc-number">6.</span> <span class="toc-text"> 混合提交规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#commit-%E4%B8%8E%E8%AF%AD%E4%B9%89%E5%8C%96%E7%89%88%E6%9C%ACsemver"><span class="toc-number">7.</span> <span class="toc-text"> Commit 与语义化版本（SemVer）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="toc-number">7.1.</span> <span class="toc-text"> 版本格式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E8%A1%8C%E4%B8%BA%E8%A7%84%E8%8C%83"><span class="toc-number">8.</span> <span class="toc-text"> 提交行为规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%84%E8%8C%83%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7"><span class="toc-number">9.</span> <span class="toc-text"> 规范自动化工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">10.</span> <span class="toc-text"> 结语</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">11.</span> <span class="toc-text"> 参考</span></a></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Uranicial" class="lazyload">
+  <div class="sidebar-author-name">Uranicial</div>
+  <div class="sidebar-description">Wubba lubba dub dub</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">5</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/Uranicial itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/39545640 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-steam sidebar-social-icon">
+      <a href=https://steamcommunity.com/profiles/76561199015325979/ itemprop="url" target="_blank" aria-label="steam" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/" aria-label="Home"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/archives" aria-label="Archives"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/about" aria-label="About"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/en/friend" aria-label="Friend"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" loading="lazy" decoding="async" fetchpriority="low"/>
+        </div>
+      </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!true || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+  
+<script src="https://npm.webcache.cn/theme-shokax-pjax@0.0.3/dist/index.umd.js" integrity="sha384-xneY1WY8hOfUzswrE4CrYq35N4BdVcxqxwHPr9zawE&#x2F;jMSCxD+jAPU55x&#x2F;jj3wlf" crossorigin="anonymous"></script>
+
+  
+<script src="/js/pjax.js"></script>
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Uranicial",
+          title: "Git 提交规范",
+          url: "https://uranicial.github.io/2026/11/26/Git%20%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/",
+          excerpt: "",
+          description: "介绍 Git 提交规范，包括约定式提交、Gitmoji、语义化版本、原子化提交及相关自动化工具，旨在提高提交记录的可读性与团队协作效率",
+          stripContent: " 引言 本人平时一直在捣鼓各种个人项目，也参与实验室的团队项目，长期保持着随心所欲编写 Commit Message 的优良传统 然而，近期在维护个人博客及其他项目时，翻看过去的提交记录，发现连自己都已经搞不清楚当时究竟修改了些什么 于是鄙人痛定思痛，决定整理一份 Git 提交规范，既作为个人开发的参考，也方便今后的团队协作  主流提交规范 目前常见的 Git 提交规范及提交风格主要有以下几种：    规范 提交示例 特点     Conventional Commits feat(auth):",
+          date: "Thu Nov 26 2026 21:30:00 GMT+0800",
+          updated: "Fri Nov 27 2026 13:00:18 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ["giscus"];
+  var commentConfig = {
+    giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        // 删除可能已存在的 giscus 脚本和 iframe
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          dark: '' ? '' : new URL('/css/giscus_reimu_dark.css', window.location.origin).href,
+          light:'' ? '' : new URL('/css/giscus_reimu_light.css', window.location.origin).href
+        }; 
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; // not a url, maybe a name of built-in theme
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'Uranicial/Uranicial.github.io');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOQQnnlg');
+        giscusScript.setAttribute('data-category', '博客评论'); 
+        giscusScript.setAttribute('data-category-id', 'DIC_kwDOQQnnls4DJ5Ut');
+        giscusScript.setAttribute('data-mapping', 'title');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'top');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+        const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'giscus';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false,
+      utterances: false,
+      beaudar: false,
+      disqus: false,
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.6' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+    <script data-pjax>
+      var __katexTagOverflowHandler;
+      if (__katexTagOverflowHandler) {
+        window.removeEventListener("resize", __katexTagOverflowHandler);
+      }
+      __katexTagOverflowHandler = function() {
+        _$$(".katex-display").forEach(function(elem) {
+          var ts = elem.querySelectorAll(".tag");
+          var eqns = elem.querySelectorAll(".base");
+          if (ts.length === 0 || eqns.length === 0) return;
+          var t = ts[0];
+          var lastEqn = eqns[eqns.length - 1];
+          var firstEqn = eqns[0];
+          if (lastEqn.getBoundingClientRect().right > t.getBoundingClientRect().left) {
+            t.classList.add("tag-overflowed");
+          } else if (firstEqn.getBoundingClientRect().left - elem.getBoundingClientRect().left >= t.offsetWidth / 2) {
+            t.classList.remove("tag-overflowed");
+          }
+        });
+      };
+      window.addEventListener("resize", __katexTagOverflowHandler);
+      window.katexTagOverflowHandler = __katexTagOverflowHandler;
+    </script>
+    
+<script src="https://npm.webcache.cn/katex@0.16.47/dist/katex.min.js" integrity="sha384-CwjPRVHTvLiMBFjEoij+QZViMV5rhTOIp7CJzl24JEqpRDA1sJFHVXXLURktbYYp" crossorigin="anonymous" defer data-pjax></script>
+
+    
+<script src="https://npm.webcache.cn/katex@0.16.47/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8&#x2F;NDKJhSGZNP&#x2F;khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" defer onload="renderMathInElement(_$(&#39;article&#39;), {delimiters: [{left: &#39;$$&#39;, right: &#39;$$&#39;, display: true},{left: &#39;$&#39;, right: &#39;$&#39;, display: false}]});window.katexTagOverflowHandler?.();" data-pjax></script>
+
+  
+    <script>
+      var setupAPlayer = () => {
+        if (!true || !window.matchMedia('(max-width: 768px)').matches) {
+          if (window.matchMedia('(max-width: 959px)').matches) {
+            const meting = _$('meting-js');
+            if (meting) {
+              meting.setAttribute('fixed', 'true');
+              const aside = meting.parentNode?.parentNode;
+              if (aside?.tagName === 'ASIDE') {
+                meting.parentNode.removeChild(meting);
+                document.body.appendChild(meting);
+              }
+            }
+          }
+        }
+      };
+        var meting_api = "https://apivc-meting.sakurink.eu.org/index.php?server=:server&type=:type&id=:id";
+    </script>
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous" defer onload="setupAPlayer()"></script>
+
+    
+<script src="https://npm.webcache.cn/meting@2.0.2/dist/Meting.min.js" integrity="sha384-fbKru+jstKDdWI11+8ziKY8ts5Sv48OB1WWGUom0J9ZxRGKLm&#x2F;hmuYNnkIYeT3lu" crossorigin="anonymous" defer></script>
+
+
+  
+<script src="https://npm.webcache.cn/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha384-HeUHqi0nVsPUm&#x2F;E0ss7OfnIV&#x2F;yD96JWB8ehZvUuoVax9DpNHL17jj9pdfXHzqDxm" crossorigin="anonymous" defer></script>
+
+  <script data-pjax>
+    if (document.readyState === "loading") {
+      document.addEventListener('DOMContentLoaded', () => {
+        pangu?.spacingPage();
+      });
+    } else {
+      pangu?.spacingPage();
+    }
+  </script>
+
+  </body>
+  </html>
